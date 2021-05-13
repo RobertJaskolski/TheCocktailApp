@@ -1,4 +1,4 @@
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: 'the-cocktail-app.firebaseapp.com',
   projectId: 'the-cocktail-app',
