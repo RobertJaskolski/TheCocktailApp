@@ -2,8 +2,15 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { checkUserSession, signOutUserStart } from './redux/user/user.actions';
+// Containers (pages)
 import Login from './containers/Login';
+import Home from './containers/Home';
+
+// HOC's
 import WithAuth from './hoc/WithAuth';
+
+// Layouts
+import MainLayout from './Layouts/MainLayout';
 
 function App() {
   const dispatch = useDispatch();
@@ -22,19 +29,17 @@ function App() {
           exact
           path='/'
           render={() => (
-            <>
-              <h1>Home page</h1>
-            </>
+            <MainLayout>
+              <Home />
+            </MainLayout>
           )}
         />
-        <Route path='/login' render={() => <Login />} />
         <Route
-          path='/auth'
+          path='/login'
           render={() => (
-            <WithAuth>
-              <h1>Auth page</h1>
-              <span onClick={signOut}>Logout</span>
-            </WithAuth>
+            <MainLayout>
+              <Login />
+            </MainLayout>
           )}
         />
       </Switch>
