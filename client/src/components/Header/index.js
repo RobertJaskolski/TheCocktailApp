@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { signOutUserStart } from '../../redux/user/user.actions';
+import Logo from '../../assets/logo.png';
 import './styles.scss';
 
 const mapState = (state) => ({
@@ -18,7 +19,11 @@ function Header(props) {
 
   return (
     <header>
-      <div className='logo'>LOGO</div>
+      <div className='logo'>
+        <Link to='/'>
+          <img alt='Logo' src={Logo} />
+        </Link>
+      </div>
       <nav>
         <ul>
           {!currentUser && (

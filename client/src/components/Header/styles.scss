@@ -1,0 +1,28 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(38, 39, 41);
+  .logo {
+    img {
+      width: 120px;
+      height: 75px;
+    }
+  }
+
+  ul {
+    list-style: none;
+  }
+  ul,
+  li {
+    display: inline-block;
+  }
+  li {
+    margin: 0px 15px;
+    span {
+      cursor: pointer;
+      text-transform: uppercase;
+      color: white;
+    }
+  }
+}
