@@ -1,6 +1,12 @@
 import { takeLatest, call, all, put } from 'redux-saga/effects';
 import userTypes from './user.types';
-import { signInSuccess, signOutUserSuccess, userError } from './user.actions';
+import { handleResetPasswordAPI } from './user.helpers';
+import {
+  signInSuccess,
+  signOutUserSuccess,
+  userError,
+  resetPasswordSuccess,
+} from './user.actions';
 import {
   auth,
   handleUserProfile,
@@ -105,6 +111,20 @@ export function* onEmailSignInStart() {
 
 // Password reset
 
+export function* resetPassword({ payload: { email } }) {
+  yield put(userError(''));
+  try {
+    yield call(handleResetPasswordAPI, email);
+    yield put(resetPasswordSuccess());
+  } catch (err) {
+    yield put(userError(err));
+  }
+}
+
+export function* onResetPasswordStart() {
+  yield takeLatest(userTypes.RESET_PASSWORD_START, resetPassword);
+}
+
 // Sagas
 
 export default function* userSagas() {
@@ -114,5 +134,6 @@ export default function* userSagas() {
     call(onGoogleSignInStart),
     call(onEmailSignInStart),
     call(onSignUpUserStart),
+    call(onResetPasswordStart),
   ]);
 }

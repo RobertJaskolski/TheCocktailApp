@@ -3,6 +3,7 @@ import userTypes from './user.types';
 const INIT_STATE = {
   currentUser: null,
   userErr: [],
+  resetPasswordSuccess: false,
 };
 const userReducer = (state = INIT_STATE, action) => {
   switch (action.type) {
@@ -12,6 +13,8 @@ const userReducer = (state = INIT_STATE, action) => {
         currentUser: action.payload,
         userErr: [],
       };
+    case userTypes.RESET_PASSWORD_SUCCESS:
+      return { ...state, resetPasswordSuccess: action.payload };
     case userTypes.USER_ERROR:
       return { ...state, userErr: action.payload };
     case userTypes.RESET_USER_STATE:

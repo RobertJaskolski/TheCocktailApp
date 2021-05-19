@@ -7,15 +7,37 @@
   color: white;
   text-transform: uppercase;
   text-align: center;
-  div {
+  .wrapper {
     min-width: 500px;
     border: solid 2px white;
     padding: 30px;
     background-color: $lightRed;
     position: relative;
-    input,
-    button {
-      margin: 0px auto 15px;
+    form {
+      position: relative;
+      p {
+        width: 100%;
+        position: absolute;
+        bottom: -50px;
+        text-transform: none;
+        font-size: 16px;
+        color: white;
+      }
+    }
+    div {
+      position: relative;
+      input,
+      button {
+        margin: 0px auto 20px;
+      }
+      span {
+        text-transform: none;
+        position: absolute;
+        left: 45px;
+        top: -16px;
+        font-size: 16px;
+        color: white;
+      }
     }
     button:first-of-type {
       justify-content: center;
