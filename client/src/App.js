@@ -11,7 +11,7 @@ import Reset from './containers/Reset';
 
 // HOC's
 import WithAuth from './hoc/WithAuth';
-
+import WithNotAuth from './hoc/WithNotAuth';
 // Layouts
 import MainLayout from './Layouts/MainLayout';
 
@@ -40,25 +40,31 @@ function App() {
         <Route
           path='/login'
           render={() => (
-            <MainLayout>
-              <Login />
-            </MainLayout>
+            <WithNotAuth>
+              <MainLayout>
+                <Login />
+              </MainLayout>
+            </WithNotAuth>
           )}
         />
         <Route
           path='/register'
           render={() => (
-            <MainLayout>
-              <Register />
-            </MainLayout>
+            <WithNotAuth>
+              <MainLayout>
+                <Register />
+              </MainLayout>
+            </WithNotAuth>
           )}
         />
         <Route
           path='/reset'
           render={() => (
-            <MainLayout>
-              <Reset />
-            </MainLayout>
+            <WithNotAuth>
+              <MainLayout>
+                <Reset />
+              </MainLayout>
+            </WithNotAuth>
           )}
         />
       </Switch>

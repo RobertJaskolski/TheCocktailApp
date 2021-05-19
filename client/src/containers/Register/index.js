@@ -1,24 +1,9 @@
 import React, { useEffect } from 'react';
 import './styles.scss';
-import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import Input from '../../components/form/Input';
 import Button from '../../components/form/Button';
 
-const mapState = ({ user }) => ({
-  currentUser: user['currentUser'],
-});
-
 function Register() {
-  const { currentUser } = useSelector(mapState);
-  const history = useHistory();
-
-  useEffect(() => {
-    if (currentUser) {
-      history.push('/');
-    }
-  }, [currentUser]);
-
   return (
     <section className='register'>
       <div>

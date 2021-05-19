@@ -3,18 +3,13 @@ import './styles.scss';
 import Button from '../../components/form/Button';
 import Input from '../../components/form/Input';
 import { googleSignInStart } from '../../redux/user/user.actions';
-import { Link, useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import GoogleLogo from '../../assets/googleLogo.png';
 import FacebookLogo from '../../assets/facebookLogo.png';
 
-const mapState = ({ user }) => ({
-  currentUser: user['currentUser'],
-});
-
 function Login() {
   const dispatch = useDispatch();
-  const { currentUser } = useSelector(mapState);
   const history = useHistory();
 
   const handleGoogleSignIn = () => {
@@ -24,12 +19,6 @@ function Login() {
   const handleForgotPassword = () => {
     history.push('/reset');
   };
-
-  useEffect(() => {
-    if (currentUser) {
-      history.push('/');
-    }
-  }, [currentUser]);
 
   return (
     <section className='login'>
