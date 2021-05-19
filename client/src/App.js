@@ -6,6 +6,8 @@ import './main.scss';
 // Containers (pages)
 import Login from './containers/Login';
 import Home from './containers/Home';
+import Register from './containers/Register';
+import Reset from './containers/Reset';
 
 // HOC's
 import WithAuth from './hoc/WithAuth';
@@ -40,6 +42,22 @@ function App() {
           render={() => (
             <MainLayout>
               <Login />
+            </MainLayout>
+          )}
+        />
+        <Route
+          path='/register'
+          render={() => (
+            <MainLayout>
+              <Register />
+            </MainLayout>
+          )}
+        />
+        <Route
+          path='/reset'
+          render={() => (
+            <MainLayout>
+              <Reset />
             </MainLayout>
           )}
         />
