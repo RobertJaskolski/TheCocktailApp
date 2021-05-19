@@ -1,13 +1,13 @@
 import React from 'react';
 import './styles.scss';
 
-function Input({ handleChange, label, ...otherProps }) {
-  return (
+const Input = React.forwardRef(
+  ({ handleChange, label, ...otherProps }, ref) => (
     <>
       {label && <label>{label}</label>}
-      <input onChange={handleChange} {...otherProps} />
+      <input ref={ref} onChange={handleChange} {...otherProps} />
     </>
-  );
-}
+  )
+);
 
 export default Input;
