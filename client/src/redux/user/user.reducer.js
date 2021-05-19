@@ -1,10 +1,13 @@
 import userTypes from './user.types';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 const INIT_STATE = {
   currentUser: null,
   userErr: [],
+  resetPasswordSuccess: false,
 };
-const userReducer = (state = INIT_STATE, action) => {
+export const userReducer = (state = INIT_STATE, action) => {
   switch (action.type) {
     case userTypes.SIGN_IN_SUCCESS:
       return {
@@ -12,6 +15,8 @@ const userReducer = (state = INIT_STATE, action) => {
         currentUser: action.payload,
         userErr: [],
       };
+    case userTypes.RESET_PASSWORD_SUCCESS:
+      return { ...state, resetPasswordSuccess: action.payload };
     case userTypes.USER_ERROR:
       return { ...state, userErr: action.payload };
     case userTypes.RESET_USER_STATE:
@@ -22,4 +27,10 @@ const userReducer = (state = INIT_STATE, action) => {
   }
 };
 
-export default userReducer;
+const persistConfig = {
+  key: 'user',
+  storage: storage,
+  blacklist: ['userErr'],
+};
+
+export default persistReducer(persistConfig, userReducer);

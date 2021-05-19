@@ -1,15 +1,28 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
-import { checkUserSession, signOutUserStart } from './redux/user/user.actions';
+import { checkUserSession } from './redux/user/user.actions';
+import './main.scss';
+// Containers (pages)
 import Login from './containers/Login';
+import Home from './containers/Home';
+import Register from './containers/Register';
+import Reset from './containers/Reset';
+
+// HOC's
 import WithAuth from './hoc/WithAuth';
+import WithNotAuth from './hoc/WithNotAuth';
+import WithUserError from './hoc/WithUserError';
+
+// Layouts
+import MainLayout from './Layouts/MainLayout';
+
+const WithUserErrorReset = WithUserError(Reset);
+const WithUserErrorRegister = WithUserError(Register);
+const WithUserErrorLogin = WithUserError(Login);
 
 function App() {
   const dispatch = useDispatch();
-  const signOut = () => {
-    dispatch(signOutUserStart());
-  };
 
   useEffect(() => {
     dispatch(checkUserSession());
@@ -22,18 +35,48 @@ function App() {
           exact
           path='/'
           render={() => (
-            <>
-              <h1>Home page</h1>
-            </>
+            <MainLayout>
+              <Home />
+            </MainLayout>
           )}
         />
-        <Route path='/login' render={() => <Login />} />
         <Route
-          path='/auth'
+          path='/login'
+          render={() => (
+            <WithNotAuth>
+              <MainLayout>
+                <WithUserErrorLogin />
+              </MainLayout>
+            </WithNotAuth>
+          )}
+        />
+        <Route
+          path='/register'
+          render={() => (
+            <WithNotAuth>
+              <MainLayout>
+                <WithUserErrorRegister />
+              </MainLayout>
+            </WithNotAuth>
+          )}
+        />
+        <Route
+          path='/reset'
+          render={() => (
+            <WithNotAuth>
+              <MainLayout>
+                <WithUserErrorReset />
+              </MainLayout>
+            </WithNotAuth>
+          )}
+        />
+        <Route
+          path='/favs'
           render={() => (
             <WithAuth>
-              <h1>Auth page</h1>
-              <span onClick={signOut}>Logout</span>
+              <MainLayout>
+                <h1>Favs</h1>
+              </MainLayout>
             </WithAuth>
           )}
         />

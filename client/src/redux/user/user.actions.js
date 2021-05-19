@@ -4,6 +4,10 @@ export const signInSuccess = (user) => ({
   type: userTypes.SIGN_IN_SUCCESS,
   payload: user,
 });
+export const emailSignInStart = (userCredentials) => ({
+  type: userTypes.EMAIL_SIGN_IN_START,
+  payload: userCredentials,
+});
 export const googleSignInStart = () => ({
   type: userTypes.GOOGLE_SIGN_IN_START,
 });
@@ -12,6 +16,19 @@ export const signOutUserStart = () => ({
 });
 export const signOutUserSuccess = () => ({
   type: userTypes.SIGN_OUT_USER_SUCCESS,
+});
+
+export const signUpUserStart = (userCredentials) => ({
+  type: userTypes.SIGN_UP_USER_START,
+  payload: userCredentials,
+});
+export const resetPasswordStart = (userCredentials) => ({
+  type: userTypes.RESET_PASSWORD_START,
+  payload: userCredentials,
+});
+export const resetPasswordSuccess = () => ({
+  type: userTypes.RESET_PASSWORD_SUCCESS,
+  payload: true,
 });
 
 export const resetUserState = () => ({
