@@ -39,10 +39,10 @@ function Header(props) {
           {currentUser && (
             <>
               <li>
-                <span onClick={signOut}>Logout</span>
+                <Link to='/favs'>Favs</Link>
               </li>
               <li>
-                <Link to='/favs'>Favs</Link>
+                <span onClick={signOut}>Logout</span>
               </li>
             </>
           )}

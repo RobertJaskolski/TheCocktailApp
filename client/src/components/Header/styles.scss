@@ -2,16 +2,16 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(38, 39, 41);
   .logo {
     img {
-      width: 120px;
-      height: 75px;
+      width: 150px;
+      height: 93px;
     }
   }
 
   ul {
     list-style: none;
+    font-size: 27px;
   }
   ul,
   li {
