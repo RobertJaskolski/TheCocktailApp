@@ -90,11 +90,12 @@ export function* onSignUpUserStart() {
 // Email signin
 
 export function* emailSignIn({ payload: { email, password } }) {
+  yield put(userError(''));
   try {
     const { user } = yield auth.signInWithEmailAndPassword(email, password);
     yield getSnapshotFromUserAuth(user);
   } catch (err) {
-    console.log(err);
+    yield put(userError(err.message));
   }
 }
 

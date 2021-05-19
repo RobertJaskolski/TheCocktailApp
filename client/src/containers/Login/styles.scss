@@ -7,23 +7,35 @@
   color: white;
   text-transform: uppercase;
   text-align: center;
-  div {
+  .wrapper {
     min-width: 500px;
+    min-height: 645px;
     border: solid 2px white;
     padding: 30px;
     background-color: $lightRed;
     position: relative;
+    div {
+      position: relative;
+      span {
+        text-transform: none;
+        position: absolute;
+        left: 45px;
+        top: -16px;
+        font-size: 16px;
+        color: white;
+      }
+    }
     h1 {
       font-size: 46px;
     }
     input,
     button {
-      margin: 0px auto 15px;
+      margin: 0px auto 20px;
     }
     button:first-of-type {
       justify-content: center;
     }
-    p {
+    p:first-of-type {
       position: absolute;
       bottom: 0;
       right: 80px;
@@ -33,6 +45,12 @@
       &:hover {
         opacity: 1;
       }
+    }
+    p.error {
+      max-width: 420px;
+      text-transform: none;
+      font-size: 16px;
+      color: white;
     }
   }
 }
