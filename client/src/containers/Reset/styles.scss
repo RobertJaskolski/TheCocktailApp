@@ -1,0 +1,27 @@
+@import '../../colors';
+.reset {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+  div {
+    min-width: 500px;
+    border: solid 2px white;
+    padding: 30px;
+    background-color: $lightRed;
+    position: relative;
+    input,
+    button {
+      margin: 0px auto 15px;
+    }
+    button:first-of-type {
+      justify-content: center;
+    }
+    h1 {
+      font-size: 46px;
+    }
+  }
+}

@@ -21,6 +21,10 @@ function Login() {
     dispatch(googleSignInStart());
   };
 
+  const handleForgotPassword = () => {
+    history.push('/reset');
+  };
+
   useEffect(() => {
     if (currentUser) {
       history.push('/');
@@ -42,7 +46,7 @@ function Login() {
           <img src={FacebookLogo} alt='google logo' />
           Signin with Facebook
         </Button>
-        <p>Forgot password?</p>
+        <p onClick={handleForgotPassword}>Forgot password?</p>
       </div>
     </section>
   );
