@@ -3,14 +3,10 @@ import './styles.scss';
 import Input from '../../components/form/Input';
 import Button from '../../components/form/Button';
 import { signUpUserStart } from '../../redux/user/user.actions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
-const mapState = ({ user }) => ({
-  userErr: user['userErr'],
-});
-
-function Register() {
+function Register({ userErr }) {
   const {
     register,
     handleSubmit,
@@ -18,7 +14,7 @@ function Register() {
     setError,
   } = useForm();
   const dispatch = useDispatch();
-  const { userErr } = useSelector(mapState);
+
   const handleFormSubmi = (data) => {
     const {
       birthday,

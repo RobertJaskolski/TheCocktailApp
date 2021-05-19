@@ -7,16 +7,12 @@ import {
   emailSignInStart,
 } from '../../redux/user/user.actions';
 import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import GoogleLogo from '../../assets/googleLogo.png';
 import FacebookLogo from '../../assets/facebookLogo.png';
 
-const mapState = ({ user }) => ({
-  userErr: user['userErr'],
-});
-
-function Login() {
+function Login({ userErr }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const {
@@ -25,7 +21,6 @@ function Login() {
     formState: { errors },
     setError,
   } = useForm();
-  const { userErr } = useSelector(mapState);
 
   const handleGoogleSignIn = () => {
     dispatch(googleSignInStart());

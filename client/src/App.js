@@ -12,8 +12,14 @@ import Reset from './containers/Reset';
 // HOC's
 import WithAuth from './hoc/WithAuth';
 import WithNotAuth from './hoc/WithNotAuth';
+import WithUserError from './hoc/WithUserError';
+
 // Layouts
 import MainLayout from './Layouts/MainLayout';
+
+const WithUserErrorReset = WithUserError(Reset);
+const WithUserErrorRegister = WithUserError(Register);
+const WithUserErrorLogin = WithUserError(Login);
 
 function App() {
   const dispatch = useDispatch();
@@ -39,7 +45,7 @@ function App() {
           render={() => (
             <WithNotAuth>
               <MainLayout>
-                <Login />
+                <WithUserErrorLogin />
               </MainLayout>
             </WithNotAuth>
           )}
@@ -49,7 +55,7 @@ function App() {
           render={() => (
             <WithNotAuth>
               <MainLayout>
-                <Register />
+                <WithUserErrorRegister />
               </MainLayout>
             </WithNotAuth>
           )}
@@ -59,7 +65,7 @@ function App() {
           render={() => (
             <WithNotAuth>
               <MainLayout>
-                <Reset />
+                <WithUserErrorReset />
               </MainLayout>
             </WithNotAuth>
           )}

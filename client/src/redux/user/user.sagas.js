@@ -79,7 +79,6 @@ export function* onSignOutUserStart() {
 // Singup
 
 export function* signUpUser({ payload: { displayName, email, password } }) {
-  yield put(userError(''));
   try {
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
     const additionalData = { displayName };
@@ -96,7 +95,6 @@ export function* onSignUpUserStart() {
 // Email signin
 
 export function* emailSignIn({ payload: { email, password } }) {
-  yield put(userError(''));
   try {
     const { user } = yield auth.signInWithEmailAndPassword(email, password);
     yield getSnapshotFromUserAuth(user);
@@ -112,7 +110,6 @@ export function* onEmailSignInStart() {
 // Password reset
 
 export function* resetPassword({ payload: { email } }) {
-  yield put(userError(''));
   try {
     yield call(handleResetPasswordAPI, email);
     yield put(resetPasswordSuccess());

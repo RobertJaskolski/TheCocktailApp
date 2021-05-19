@@ -12,10 +12,9 @@ import { useHistory } from 'react-router-dom';
 
 const mapState = ({ user }) => ({
   resetPasswordSuccess: user['resetPasswordSuccess'],
-  userErr: user['userErr'],
 });
 
-function Reset() {
+function Reset({ userErr }) {
   const {
     register,
     handleSubmit,
@@ -24,7 +23,7 @@ function Reset() {
   } = useForm();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { resetPasswordSuccess, userErr } = useSelector(mapState);
+  const { resetPasswordSuccess } = useSelector(mapState);
 
   const handleOnSubmitForm = (data) => {
     const { email, confirmEmail } = data;
