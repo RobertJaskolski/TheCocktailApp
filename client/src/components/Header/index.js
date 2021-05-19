@@ -32,7 +32,7 @@ function Header(props) {
                 <Link to='/login'>Login</Link>
               </li>
               <li>
-                <Link to='/registration'>Register</Link>
+                <Link to='/register'>Register</Link>
               </li>
             </>
           )}
