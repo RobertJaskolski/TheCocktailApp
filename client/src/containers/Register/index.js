@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './styles.scss';
 import Input from '../../components/form/Input';
 import Button from '../../components/form/Button';
@@ -13,7 +13,7 @@ function Register() {
         <Input placeholder='Password' type='password' />
         <Input placeholder='Confirm Password' type='password' />
         <Input className='birthday' label='Birthday' type='date' />
-        <Button>Singup</Button>
+        <Button>Signup</Button>
       </div>
     </section>
   );
