@@ -1,0 +1,29 @@
+@import '../../../colors';
+button {
+  border: none;
+  font-size: 22px;
+  padding: 15px;
+  text-transform: uppercase;
+  background-color: white;
+  color: $lightRed;
+  font-weight: 600;
+  transition: opacity 300ms ease-in-out;
+  opacity: 0.85;
+  width: 80%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 15px;
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+  img {
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+  }
+  p {
+    text-align: center;
+  }
+}
