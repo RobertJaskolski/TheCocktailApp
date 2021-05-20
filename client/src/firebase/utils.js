@@ -1,10 +1,11 @@
-import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import { firebaseConfig } from './firebaseconfig';
-require('dotenv').config();
-console.log(firebaseConfig.apiKey, process.env.REACT_APP_API_KEY);
+import runtimeEnv from '@mars/heroku-js-runtime-env';
+const env = runtimeEnv();
+
+console.log(firebaseConfig.apiKey, env.REACT_APP_API_KEY);
 console.log(firebaseConfig.messagingSenderId);
 console.log(firebaseConfig.appId);
 console.log(firebaseConfig.measurementId);
