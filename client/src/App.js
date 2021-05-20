@@ -16,6 +16,7 @@ import WithUserError from './hoc/WithUserError';
 
 // Layouts
 import MainLayout from './Layouts/MainLayout';
+require('dotenv').config();
 
 const WithUserErrorReset = WithUserError(Reset);
 const WithUserErrorRegister = WithUserError(Register);
