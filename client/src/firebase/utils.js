@@ -1,8 +1,9 @@
+import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import { firebaseConfig } from './firebaseconfig';
-
+require('dotenv').config();
 console.log(firebaseConfig.apiKey, process.env.REACT_APP_API_KEY);
 console.log(firebaseConfig.messagingSenderId);
 console.log(firebaseConfig.appId);
