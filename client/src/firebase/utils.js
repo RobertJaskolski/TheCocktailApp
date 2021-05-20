@@ -3,6 +3,11 @@ import 'firebase/firestore';
 import 'firebase/auth';
 import { firebaseConfig } from './firebaseconfig';
 
+console.log(firebaseConfig.apiKey, process.env.REACT_APP_API_KEY);
+console.log(firebaseConfig.messagingSenderId);
+console.log(firebaseConfig.appId);
+console.log(firebaseConfig.measurementId);
+
 firebase.initializeApp(firebaseConfig);
 
 export const auth = firebase.auth();
