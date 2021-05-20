@@ -2,13 +2,6 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import { firebaseConfig } from './firebaseconfig';
-import runtimeEnv from '@mars/heroku-js-runtime-env';
-const env = runtimeEnv();
-
-console.log(firebaseConfig.apiKey, env.REACT_APP_API_KEY);
-console.log(firebaseConfig.messagingSenderId);
-console.log(firebaseConfig.appId);
-console.log(firebaseConfig.measurementId);
 
 firebase.initializeApp(firebaseConfig);
 
