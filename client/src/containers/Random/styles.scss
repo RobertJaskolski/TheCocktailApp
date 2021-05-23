@@ -1,0 +1,21 @@
+@import '../../colors';
+.random-drinks__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.random-drinks__cards-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.random-drinks__title {
+    color: white;
+}
+
+.random-drinks__subtitle {
+    color: $lightRed;
+    font-weight: normal;
+}
