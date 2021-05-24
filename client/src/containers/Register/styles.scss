@@ -9,9 +9,15 @@
   text-align: center;
   label {
     display: block;
-    margin: 0px auto 20px;
+    margin: 0px auto 15px;
   }
   .wrapper {
+    @media (max-height: 850px) {
+      padding: 20px 20px 30px;
+    }
+    @media (max-height: 750px) {
+      padding: 0px 20px 10px;
+    }
     min-width: 500px;
     border: solid 2px white;
     padding: 30px 30px 50px;
@@ -31,7 +37,10 @@
       position: relative;
       input,
       button {
-        margin: 0px auto 20px;
+        @media (max-height: 850px) {
+          font-size: 18px;
+        }
+        margin: 0px auto 15px;
       }
       span {
         text-transform: none;
@@ -46,6 +55,13 @@
       justify-content: center;
     }
     h1 {
+      @media (max-height: 850px) {
+        font-size: 32px;
+      }
+      @media (max-height: 750px) {
+        padding: 20px 0px;
+        margin: 0px;
+      }
       font-size: 46px;
     }
   }

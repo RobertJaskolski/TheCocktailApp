@@ -1,39 +1,41 @@
 @import '../../../colors';
 .random-drink-card__container {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    background-color: $lightRed;
-    color: white;
-    text-align: center;
-    border: 2px solid white;
-    width: 200px;
-    height: 290px;
-    margin-left: 25px;
-    margin-right: 25px;
-    img {
-        width: 160px;
-        align-self: center;
-        margin-top: 20px;
-    }
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  background-color: $lightRed;
+  color: white;
+  text-align: center;
+  border: 2px solid white;
+  width: 200px;
+  height: 290px;
+  margin-left: 25px;
+  margin-right: 25px;
+  img {
+    width: 160px;
+    align-self: center;
+    margin-top: 20px;
+    border-radius: 2px;
+    border: 1px solid white;
+  }
 }
 
 .random-drink-card__container:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .random-drink-card__title {
-    font-size: 23px;
-    margin-top: 20px;
+  font-size: 23px;
+  margin-top: 20px;
 }
 
 @media (max-width: 800px) {
-    .random-drink-card__container {
-        height: 100px;
-        margin-bottom: 10px;
-        justify-content: center;
-        img {
-            display: none;
-        }
+  .random-drink-card__container {
+    height: 100px;
+    margin-bottom: 10px;
+    justify-content: center;
+    img {
+      display: none;
     }
+  }
 }

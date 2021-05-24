@@ -44,6 +44,13 @@
     }
     h1 {
       font-size: 46px;
+      @media (max-height: 850px) {
+        font-size: 32px;
+      }
+      @media (max-height: 750px) {
+        padding: 20px 0px;
+        margin: 0px;
+      }
     }
   }
 }
