@@ -14,9 +14,8 @@ export default function IngredientSearch() {
         </h2>
 
             <div className="ingredients-search__cards-wrapper">
-                <IngredientRowItem />
-                <IngredientRowItem />
-                <IngredientRowItem />
+                {ingredients.map(x => <IngredientRowItem ingredient={x} />)}
+
             </div>
 
 
