@@ -39,3 +39,11 @@
     }
   }
 }
+
+@media (max-width: 500px) {
+  .random-drink-card__container {
+    height: 70px;
+    margin-bottom: 10px;
+    justify-content: center;
+  }
+}

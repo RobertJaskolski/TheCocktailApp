@@ -57,6 +57,9 @@ function Header() {
               <li onClick={handleOnClickHamburger}>
                 <Link to='/register'>Register</Link>
               </li>
+              <li onClick={handleOnClickHamburger}>
+                <Link to='/random'>Random</Link>
+              </li>
             </>
           )}
           {currentUser && (

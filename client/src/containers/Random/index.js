@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useState } from "react";
-import RandomDrinkCard from "../../components/Random/RandomDrinkCard";
-import { readRandomDrinks } from "../../api/drinksClient";
-import "./styles.scss";
+import { useCallback, useEffect, useState } from 'react';
+import RandomDrinkCard from '../../components/Random/RandomDrinkCard';
+import { readRandomDrinks } from '../../api/drinksClient';
+import './styles.scss';
 
 const Random = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,19 +26,19 @@ const Random = () => {
     return <div></div>;
   } else {
     return (
-      <div className="random-drinks__container">
-        <h1 className="random-drinks__title">Random drinks</h1>
-        <h2 className="random-drinks__subtitle">
+      <div className='random-drinks__container'>
+        <h1 className='random-drinks__title'>Random drinks</h1>
+        <h2 className='random-drinks__subtitle'>
           Choose one of the three drinks below.
         </h2>
 
-        <div className="random-drinks__cards-wrapper">
+        <section className='random-drinks__cards-wrapper'>
           <RandomDrinkCard drink={drinks[0]} />
           <RandomDrinkCard drink={drinks[1]} />
           <RandomDrinkCard drink={drinks[2]} />
-        </div>
+        </section>
 
-        <button className="random-drinks__button" onClick={() => setDrinks([])}>
+        <button className='random-drinks__button' onClick={() => setDrinks([])}>
           Let's draw again!
         </button>
       </div>
