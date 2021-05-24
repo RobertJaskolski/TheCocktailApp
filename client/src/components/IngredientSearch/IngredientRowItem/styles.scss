@@ -1,0 +1,34 @@
+@import "../../../colors";
+.ingredient-row-item__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ingredient-row-item__cards-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.ingredient-row-item__title {
+  color: white;
+}
+
+.ingredient-row-item__subtitle {
+  color: $lightRed;
+  font-weight: normal;
+}
+
+.ingredient-row-item__button {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  width: 30%;
+}
+
+@media (max-width: 800px) {
+  .ingredient-row-item__cards-wrapper {
+    flex-direction: column;
+  }
+}

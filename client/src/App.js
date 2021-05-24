@@ -8,6 +8,7 @@ import Login from "./containers/Login";
 import Home from "./containers/Home";
 import Register from "./containers/Register";
 import Reset from "./containers/Reset";
+import IngredientSearch from "./containers/IngredientSearch"
 
 // HOC's
 import WithAuth from "./hoc/WithAuth";
@@ -17,6 +18,7 @@ import WithUserError from "./hoc/WithUserError";
 // Layouts
 import MainLayout from "./Layouts/MainLayout";
 import Random from "./containers/Random";
+
 
 const WithUserErrorReset = WithUserError(Reset);
 const WithUserErrorRegister = WithUserError(Register);
@@ -77,6 +79,16 @@ function App() {
             <WithNotAuth>
               <MainLayout>
                 <Random />
+              </MainLayout>
+            </WithNotAuth>
+          )}
+        />
+        <Route
+          path="/ingredients"
+          render={() => (
+            <WithNotAuth>
+              <MainLayout>
+                <IngredientSearch />
               </MainLayout>
             </WithNotAuth>
           )}

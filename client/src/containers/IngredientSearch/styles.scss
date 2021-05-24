@@ -1,0 +1,34 @@
+@import "../../colors";
+.ingredients-search__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ingredients-search__cards-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.ingredients-search__title {
+  color: white;
+}
+
+.ingredients-search__subtitle {
+  color: $lightRed;
+  font-weight: normal;
+}
+
+.ingredients-search__button {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  width: 30%;
+}
+
+@media (max-width: 800px) {
+  .ingredients-search__cards-wrapper {
+    flex-direction: column;
+  }
+}
