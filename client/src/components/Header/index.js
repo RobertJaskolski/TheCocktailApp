@@ -9,7 +9,7 @@ const mapState = (state) => ({
   currentUser: state.user['currentUser'],
 });
 
-function Header(props) {
+function Header() {
   const { currentUser } = useSelector(mapState);
   const dispatch = useDispatch();
 

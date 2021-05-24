@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import './styles.scss';
+import PropTypes from 'prop-types';
 import Input from '../../components/form/Input';
 import Button from '../../components/form/Button';
 import { useForm } from 'react-hook-form';
@@ -81,5 +82,9 @@ function Reset({ userErr }) {
     </section>
   );
 }
+
+Reset.propTypes = {
+  userErr: PropTypes.string,
+};
 
 export default Reset;

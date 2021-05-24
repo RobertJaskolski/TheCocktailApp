@@ -1,5 +1,6 @@
 import React from 'react';
 import './styles.scss';
+import PropTypes from 'prop-types';
 import Button from '../../components/form/Button';
 import Input from '../../components/form/Input';
 import {
@@ -90,5 +91,9 @@ function Login({ userErr }) {
     </section>
   );
 }
+
+Login.propTypes = {
+  userErr: PropTypes.string,
+};
 
 export default Login;
