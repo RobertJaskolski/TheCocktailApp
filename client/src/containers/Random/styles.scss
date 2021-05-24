@@ -19,3 +19,16 @@
     color: $lightRed;
     font-weight: normal;
 }
+
+.random-drinks__button {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    width: 30%;
+}
+
+@media (max-width: 800px) {
+    .random-drinks__cards-wrapper {
+        flex-direction: column;
+    }
+}

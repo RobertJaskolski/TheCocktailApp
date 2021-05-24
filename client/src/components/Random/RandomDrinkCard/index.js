@@ -2,7 +2,8 @@ import "./styles.scss";
 const RandomDrinkCard = (props) => {
   return (
     <div className="random-drink-card__container">
-      <h1>{props.drink.strDrink}</h1>
+      <img src={props.drink.strDrinkThumb} alt={props.drink.strDrink} />
+      <h1 className="random-drink-card__title">{props.drink.strDrink}</h1>
     </div>
   );
 };

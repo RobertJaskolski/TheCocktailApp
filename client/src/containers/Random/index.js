@@ -37,7 +37,9 @@ const Random = () => {
           <RandomDrinkCard drink={drinks[2]} />
         </div>
 
-        <button onClick={() => setDrinks([])}>Let's draw again!</button>
+        <button className="random-drinks__button" onClick={() => setDrinks([])}>
+          Let's draw again!
+        </button>
       </div>
     );
   }
