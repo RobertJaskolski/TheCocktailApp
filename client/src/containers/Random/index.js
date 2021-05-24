@@ -22,7 +22,8 @@ const Random = () => {
   }, [loadRandomDrinks]);
 
   if (isLoading || drinks.length === 0) {
-    return <div>Loading..</div>;
+    // TODO: Loader component?
+    return <div></div>;
   } else {
     return (
       <div className="random-drinks__container">
