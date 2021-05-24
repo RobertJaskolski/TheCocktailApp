@@ -42,6 +42,12 @@ function Header(props) {
                 <Link to='/favs'>Favs</Link>
               </li>
               <li>
+                <Link to='/random'>Random</Link>
+              </li>
+              <li>
+                <Link to='/ingredients'>Search by ingredients</Link>
+              </li>
+              <li>
                 <span onClick={signOut}>Logout</span>
               </li>
             </>

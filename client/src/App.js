@@ -76,21 +76,21 @@ function App() {
         <Route
           path="/random"
           render={() => (
-            <WithNotAuth>
+            <WithAuth>
               <MainLayout>
                 <Random />
               </MainLayout>
-            </WithNotAuth>
+            </WithAuth>
           )}
         />
         <Route
           path="/ingredients"
           render={() => (
-            <WithNotAuth>
+            <WithAuth>
               <MainLayout>
                 <IngredientSearch />
               </MainLayout>
-            </WithNotAuth>
+            </WithAuth>
           )}
         />
         <Route
