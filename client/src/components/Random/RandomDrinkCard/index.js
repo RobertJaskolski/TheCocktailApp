@@ -3,9 +3,10 @@ import './styles.scss';
 import PropTypes from 'prop-types';
 const RandomDrinkCard = ({ drink }) => {
   const { strDrinkThumb, strDrink } = drink;
+  if (!drink) return null;
   return (
     <div className='random-drink-card__container'>
-      <img src={strDrinkThumb} alt={strDrink} />
+      <img src={strDrinkThumb} loading='lazy' alt={strDrink} />
       <h1 className='random-drink-card__title'>{strDrink}</h1>
     </div>
   );

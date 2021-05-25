@@ -1,49 +1,50 @@
-import { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import RandomDrinkCard from '../../components/Random/RandomDrinkCard';
-import { readRandomDrinks } from '../../api/drinksClient';
+import randomDrinks from '../../api/randomDrinks';
 import './styles.scss';
 
 const Random = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [drinks, setDrinks] = useState([]);
+  const [error, setError] = useState('');
 
-  const loadRandomDrinks = useCallback(() => {
-    if (drinks.length === 0) {
-      readRandomDrinks().then((data) => {
-        console.log(data);
-        setDrinks(data.drinks);
+  const fetchDrinks = () => {
+    setIsLoading(true);
+    randomDrinks()
+      .then((res) => {
+        setDrinks([...res]);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
         setIsLoading(false);
       });
-    }
-  }, [drinks]);
+  };
 
   useEffect(() => {
-    loadRandomDrinks();
-  }, [loadRandomDrinks]);
+    fetchDrinks();
+  }, []);
 
-  if (isLoading || drinks.length === 0) {
-    // TODO: Loader component?
-    return <div></div>;
-  } else {
-    return (
-      <div className='random-drinks__container'>
-        <h1 className='random-drinks__title'>Random drinks</h1>
-        <h2 className='random-drinks__subtitle'>
-          Choose one of the three drinks below.
-        </h2>
+  return (
+    <section className='random-drinks__container'>
+      <h1 className='random-drinks__title'>Random drinks</h1>
+      <h2 className='random-drinks__subtitle'>
+        Choose one of the three drinks below.
+      </h2>
+      <section className='random-drinks__cards-wrapper'>
+        {Array.isArray(drinks) &&
+          drinks.length > 0 &&
+          !isLoading &&
+          drinks.map((drink) => (
+            <RandomDrinkCard drink={drink} key={drink.idDrink} />
+          ))}
+      </section>
 
-        <section className='random-drinks__cards-wrapper'>
-          <RandomDrinkCard drink={drinks[0]} />
-          <RandomDrinkCard drink={drinks[1]} />
-          <RandomDrinkCard drink={drinks[2]} />
-        </section>
-
-        <button className='random-drinks__button' onClick={() => setDrinks([])}>
-          Let's draw again!
-        </button>
-      </div>
-    );
-  }
+      <button className='random-drinks__button' onClick={fetchDrinks}>
+        Let's draw again!
+      </button>
+    </section>
+  );
 };
 
 export default Random;

@@ -4,15 +4,21 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  h1 {
+    font-size: 2rem;
+  }
 }
 
 .random-drinks__cards-wrapper {
+  min-height: 350px;
   display: flex;
   justify-content: center;
 }
 
 .random-drinks__title {
   color: white;
+  padding: 0;
+  margin: 0;
   @media (max-width: 500px) {
     font-size: 1.5rem;
     padding: 0;
@@ -47,6 +53,7 @@
 
 @media (max-width: 800px) {
   .random-drinks__cards-wrapper {
+    min-height: 400px;
     flex-direction: column;
   }
 }
