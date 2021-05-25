@@ -9,9 +9,19 @@
   text-align: center;
   label {
     display: block;
-    margin: 0px auto 20px;
+    margin: 0px auto 15px;
   }
   .wrapper {
+    @media (max-height: 850px) {
+      padding: 20px 20px 30px;
+    }
+    @media (max-height: 750px) {
+      padding: 0px 20px 10px;
+    }
+    @media (max-width: 500px) {
+      min-width: 0px;
+      padding: 0px 0px 10px;
+    }
     min-width: 500px;
     border: solid 2px white;
     padding: 30px 30px 50px;
@@ -31,6 +41,12 @@
       position: relative;
       input,
       button {
+        @media (max-height: 850px) {
+          font-size: 18px;
+        }
+        @media (max-width: 500px) {
+          font-size: 18px;
+        }
         margin: 0px auto 20px;
       }
       span {
@@ -40,12 +56,30 @@
         top: -16px;
         font-size: 16px;
         color: white;
+        @media (max-width: 500px) {
+          font-size: 14px;
+          left: 25px;
+        }
+        @media (max-width: 320px) {
+          font-size: 14px;
+          left: 40px;
+        }
       }
     }
     button:first-of-type {
       justify-content: center;
     }
     h1 {
+      @media (max-height: 850px) {
+        font-size: 32px;
+      }
+      @media (max-height: 750px) {
+        padding: 20px 0px;
+        margin: 0px;
+      }
+      @media (max-width: 500px) {
+        font-size: 25px;
+      }
       font-size: 46px;
     }
   }

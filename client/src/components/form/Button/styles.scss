@@ -1,5 +1,10 @@
 @import '../../../colors';
 button {
+  @media (max-height: 700px) {
+    font-size: 20px;
+    width: 70%;
+    padding: 10px;
+  }
   border: none;
   font-size: 22px;
   padding: 15px;
