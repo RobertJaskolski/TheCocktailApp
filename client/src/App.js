@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 import { checkUserSession } from "./redux/user/user.actions";
 import "./main.scss";
+
 // Containers (pages)
 import Login from "./containers/Login";
 import Home from "./containers/Home";

@@ -5,7 +5,23 @@ import IngredientRowItem from "../../components/IngredientSearch/IngredientRowIt
 
 export default function IngredientSearch() {
     const [isLoading, setIsLoading] = useState(true);
-    const ingredients = [{ name: "Vodka", selected: false }, { name: "Lemon", selected: false }, { name: "Water", selected: false }]
+    const ingredientsSample = [{ id: "002", name: "Vodka", selected: false }, { id: "001", name: "Lemon", selected: false }, { id: "003", name: "Water", selected: false }]
+    const [ingredients, setIngredients] = useState(ingredientsSample)
+
+    const handleIngredientSelection = id => {
+        console.log(id)
+        setIngredients(ingredients.map(
+            item => {
+                if (item.id === id) {
+                    return { ...item, selected: !item.selected };
+                }
+                else {
+                    return item;
+                }
+            }
+        ))
+    }
+
     return (
         <div className="ingredients-search__container">
             <h1 className="ingredients-search__title">Search by ingredient</h1>
@@ -13,9 +29,8 @@ export default function IngredientSearch() {
                 Select ingredients
         </h2>
 
-            <div className="ingredients-search__cards-wrapper">
-                {ingredients.map(x => <IngredientRowItem ingredient={x} />)}
-
+            <div className="ingredients-search__list_container">
+                {ingredients.map(x => <IngredientRowItem ingredient={x} onSelect={handleIngredientSelection} />)}
             </div>
 
 

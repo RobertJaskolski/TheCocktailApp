@@ -6,8 +6,9 @@
   justify-content: center;
 }
 
-.ingredients-search__cards-wrapper {
+.ingredients-search__list_container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
