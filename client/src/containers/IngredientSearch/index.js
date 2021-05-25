@@ -7,6 +7,8 @@ import {readDrinksListByIngredients} from "../../api/ingredientsRepository";
 export default function IngredientSearch() {
     const [isLoading, setIsLoading] = useState(true);
     const [drinks, setDrinks] = useState([]);
+    const ingredientsSample = [{ id: "002", name: "Vodka", selected: false }, { id: "001", name: "Lemon", selected: false }, { id: "003", name: "Water", selected: false }]
+    const [ingredients, setIngredients] = useState(ingredientsSample)
 
     const loadDrinks = useCallback(() => {
         if (drinks.length === 0) {
@@ -22,21 +24,34 @@ export default function IngredientSearch() {
         loadDrinks();
     }, [loadDrinks]);
 
-    const ingredients = [
-        {
-            name: "Vodka",
-            selected: false
-        },
-        {
-            name: "Lemon",
-            selected: false
-        },
-        {
-            name: "Water",
-            selected: false
-        }
-    ]
+    // const ingredients = [
+    //     {
+    //         name: "Vodka",
+    //         selected: false
+    //     },
+    //     {
+    //         name: "Lemon",
+    //         selected: false
+    //     },
+    //     {
+    //         name: "Water",
+    //         selected: false
+    //     }
+    // ]
 
+    const handleIngredientSelection = id => {
+        console.log(id)
+        setIngredients(ingredients.map(
+            item => {
+                if (item.id === id) {
+                    return { ...item, selected: !item.selected };
+                }
+                else {
+                    return item;
+                }
+            }
+        ))
+    }
 
     return (
         <div className="ingredients-search__container">
@@ -45,9 +60,9 @@ export default function IngredientSearch() {
                 Select ingredients
             </h2>
 
-            <div className="ingredients-search__cards-wrapper">
-                {ingredients.map(x => <IngredientRowItem ingredient={x}/>)}
-            </div>
+            <div className="ingredients-search__list_container">
+                {ingredients.map(x => <IngredientRowItem ingredient={x} onSelect={handleIngredientSelection} />)}
+
 
             <button onClick={() => setDrinks([])}>
                 Find!

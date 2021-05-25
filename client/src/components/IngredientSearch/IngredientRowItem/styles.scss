@@ -1,34 +1,73 @@
 @import "../../../colors";
-.ingredient-row-item__container {
+.container {
+  background-color: gray;
+  border: 1px solid black;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  font-size: 9px;
 }
 
-.ingredient-row-item__cards-wrapper {
-  display: flex;
-  justify-content: center;
+.checkbox-wrapper {
+  // display: flex;
+  // background-color: white;
+  // padding: 4px;
+  // text-align: center;
+  // align-items: center;
+  // vertical-align: middle;
+  // justify-content: center;
 }
 
-.ingredient-row-item__title {
+// input[type="checkbox"] {
+//   -webkit-appearance: none;
+//   -moz-appearance: none;
+//   appearance: none;
+//   display: inline-block;
+//   width: 25px;
+//   height: 25px;
+//   padding: 6px;
+//   background-clip: content-box;
+//   border: 1.5px solid #bbbbbb;
+//   border-radius: 6px;
+//   background-color: #e7e6e7;
+//   margin-left: 15px;
+//   position: relative;
+//   vertical-align: middle;
+//   justify-content: center;
+//   text-align: center;
+//   margin-top: auto;
+//   margin-bottom: auto;
+//   margin-right: 15px;
+
+//   &:checked {
+//     background-color: black;
+//   }
+
+//   &:focus {
+//     outline: none !important;
+//   }
+// }
+
+.title {
   color: white;
+  margin-left: 5px;
 }
 
-.ingredient-row-item__subtitle {
+.subtitle {
   color: $lightRed;
   font-weight: normal;
 }
 
-.ingredient-row-item__button {
+.button {
   display: flex;
   justify-content: center;
   margin-top: 50px;
   width: 30%;
 }
 
-@media (max-width: 800px) {
-  .ingredient-row-item__cards-wrapper {
-    flex-direction: column;
-  }
-}
+// @media (max-width: 800px) {
+//   .cards-wrapper {
+//     flex-direction: column;
+//   }
+// }
