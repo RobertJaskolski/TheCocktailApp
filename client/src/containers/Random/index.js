@@ -7,7 +7,7 @@ const Random = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [drinks, setDrinks] = useState([]);
   const [error, setError] = useState('');
-
+  const [isUnmount, setIsUnmount] = useState(false);
   const fetchDrinks = () => {
     setIsLoading(true);
     randomDrinks()
@@ -19,6 +19,7 @@ const Random = () => {
         setError(err);
         setIsLoading(false);
       });
+    setIsUnmount(false);
   };
 
   useEffect(() => {
@@ -36,11 +37,21 @@ const Random = () => {
           drinks.length > 0 &&
           !isLoading &&
           drinks.map((drink) => (
-            <RandomDrinkCard drink={drink} key={drink.idDrink} />
+            <RandomDrinkCard
+              isUnmount={isUnmount}
+              drink={drink}
+              key={drink.idDrink}
+            />
           ))}
       </section>
 
-      <button className='random-drinks__button' onClick={fetchDrinks}>
+      <button
+        className='random-drinks__button'
+        onClick={() => {
+          setIsUnmount(true);
+          setTimeout(() => fetchDrinks(), 1050);
+        }}
+      >
         Let's draw again!
       </button>
     </section>
