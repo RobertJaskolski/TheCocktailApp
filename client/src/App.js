@@ -1,25 +1,22 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Switch, Route } from "react-router-dom";
-import { checkUserSession } from "./redux/user/user.actions";
-import "./main.scss";
-
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
+import { checkUserSession } from './redux/user/user.actions';
+import './main.scss';
 // Containers (pages)
-import Login from "./containers/Login";
-import Home from "./containers/Home";
-import Register from "./containers/Register";
-import Reset from "./containers/Reset";
-import IngredientSearch from "./containers/IngredientSearch"
+import Login from './containers/Login';
+import Home from './containers/Home';
+import Register from './containers/Register';
+import Reset from './containers/Reset';
 
 // HOC's
-import WithAuth from "./hoc/WithAuth";
-import WithNotAuth from "./hoc/WithNotAuth";
-import WithUserError from "./hoc/WithUserError";
+import WithAuth from './hoc/WithAuth';
+import WithNotAuth from './hoc/WithNotAuth';
+import WithUserError from './hoc/WithUserError';
 
 // Layouts
-import MainLayout from "./Layouts/MainLayout";
-import Random from "./containers/Random";
-
+import MainLayout from './Layouts/MainLayout';
+import Random from './containers/Random';
 
 const WithUserErrorReset = WithUserError(Reset);
 const WithUserErrorRegister = WithUserError(Register);
@@ -33,11 +30,11 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className='App'>
       <Switch>
         <Route
           exact
-          path="/"
+          path='/'
           render={() => (
             <MainLayout>
               <Home />
@@ -45,57 +42,45 @@ function App() {
           )}
         />
         <Route
-          path="/login"
+          path='/login'
           render={() => (
-            <WithNotAuth>
-              <MainLayout>
+            <MainLayout>
+              <WithNotAuth>
                 <WithUserErrorLogin />
-              </MainLayout>
-            </WithNotAuth>
+              </WithNotAuth>
+            </MainLayout>
           )}
         />
         <Route
-          path="/register"
+          path='/register'
           render={() => (
-            <WithNotAuth>
-              <MainLayout>
+            <MainLayout>
+              <WithNotAuth>
                 <WithUserErrorRegister />
-              </MainLayout>
-            </WithNotAuth>
+              </WithNotAuth>
+            </MainLayout>
           )}
         />
         <Route
-          path="/reset"
+          path='/reset'
           render={() => (
-            <WithNotAuth>
-              <MainLayout>
+            <MainLayout>
+              <WithNotAuth>
                 <WithUserErrorReset />
-              </MainLayout>
-            </WithNotAuth>
+              </WithNotAuth>
+            </MainLayout>
           )}
         />
         <Route
-          path="/random"
+          path='/random'
           render={() => (
-            <WithAuth>
-              <MainLayout>
-                <Random />
-              </MainLayout>
-            </WithAuth>
+            <MainLayout>
+              <Random />
+            </MainLayout>
           )}
         />
         <Route
-          path="/ingredients"
-          render={() => (
-            <WithAuth>
-              <MainLayout>
-                <IngredientSearch />
-              </MainLayout>
-            </WithAuth>
-          )}
-        />
-        <Route
-          path="/favs"
+          path='/favs'
           render={() => (
             <WithAuth>
               <MainLayout>

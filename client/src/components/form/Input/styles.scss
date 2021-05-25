@@ -1,4 +1,8 @@
 input {
+  @media (max-height: 700px) {
+    font-size: 20px;
+    width: 70%;
+  }
   width: 80%;
   margin: 0px 0px 15px;
   font-size: 22px;

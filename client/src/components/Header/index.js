@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { signOutUserStart } from '../../redux/user/user.actions';
@@ -9,12 +9,16 @@ const mapState = (state) => ({
   currentUser: state.user['currentUser'],
 });
 
-function Header(props) {
+function Header() {
   const { currentUser } = useSelector(mapState);
   const dispatch = useDispatch();
-
+  const [hamburgerIsActive, setHamburgerIsActive] = useState(false);
   const signOut = () => {
     dispatch(signOutUserStart());
+  };
+
+  const handleOnClickHamburger = () => {
+    setHamburgerIsActive(!hamburgerIsActive);
   };
 
   return (
@@ -24,10 +28,70 @@ function Header(props) {
           <img alt='Logo' src={Logo} />
         </Link>
       </div>
-      <nav>
+      <button
+        className={
+          hamburgerIsActive ? 'hamburger--active hamburger' : 'hamburger'
+        }
+        onClick={handleOnClickHamburger}
+      >
+        <span className='hamburger__box'>
+          <span className='hamburger__inner'></span>
+        </span>
+      </button>
+      {/* HAMBURGER MENU */}
+      <nav
+        className={
+          hamburgerIsActive
+            ? 'menu__hamburger--active menu__hamburger'
+            : 'menu__hamburger'
+        }
+      >
         <ul>
           {!currentUser && (
             <>
+              <li onClick={handleOnClickHamburger}>
+                <Link to='/'>Home</Link>
+              </li>
+              <li onClick={handleOnClickHamburger}>
+                <Link to='/login'>Login</Link>
+              </li>
+              <li onClick={handleOnClickHamburger}>
+                <Link to='/register'>Register</Link>
+              </li>
+              <li onClick={handleOnClickHamburger}>
+                <Link className='random' to='/random'>
+                  Random
+                </Link>
+              </li>
+            </>
+          )}
+          {currentUser && (
+            <>
+              <li onClick={handleOnClickHamburger}>
+                <Link to='/favs'>Favs</Link>
+              </li>
+              <li onClick={handleOnClickHamburger}>
+                <span onClick={signOut}>Logout</span>
+              </li>
+              <li onClick={handleOnClickHamburger}>
+                <Link className='random' to='/random'>
+                  Random
+                </Link>
+              </li>
+            </>
+          )}
+        </ul>
+      </nav>
+      {/* NORMAL MENU */}
+      <nav className='menu'>
+        <ul>
+          {!currentUser && (
+            <>
+              <li onClick={handleOnClickHamburger}>
+                <Link className='random' to='/random'>
+                  Random
+                </Link>
+              </li>
               <li>
                 <Link to='/login'>Login</Link>
               </li>
@@ -38,6 +102,11 @@ function Header(props) {
           )}
           {currentUser && (
             <>
+              <li onClick={handleOnClickHamburger}>
+                <Link className='random' to='/random'>
+                  Random
+                </Link>
+              </li>
               <li>
                 <Link to='/favs'>Favs</Link>
               </li>
