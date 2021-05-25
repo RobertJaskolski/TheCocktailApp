@@ -38,6 +38,7 @@ function Header() {
           <span className='hamburger__inner'></span>
         </span>
       </button>
+      {/* HAMBURGER MENU */}
       <nav
         className={
           hamburgerIsActive
@@ -58,7 +59,9 @@ function Header() {
                 <Link to='/register'>Register</Link>
               </li>
               <li onClick={handleOnClickHamburger}>
-                <Link to='/random'>Random</Link>
+                <Link className='random' to='/random'>
+                  Random
+                </Link>
               </li>
             </>
           )}
@@ -70,14 +73,25 @@ function Header() {
               <li onClick={handleOnClickHamburger}>
                 <span onClick={signOut}>Logout</span>
               </li>
+              <li onClick={handleOnClickHamburger}>
+                <Link className='random' to='/random'>
+                  Random
+                </Link>
+              </li>
             </>
           )}
         </ul>
       </nav>
+      {/* NORMAL MENU */}
       <nav className='menu'>
         <ul>
           {!currentUser && (
             <>
+              <li onClick={handleOnClickHamburger}>
+                <Link className='random' to='/random'>
+                  Random
+                </Link>
+              </li>
               <li>
                 <Link to='/login'>Login</Link>
               </li>
@@ -88,6 +102,11 @@ function Header() {
           )}
           {currentUser && (
             <>
+              <li onClick={handleOnClickHamburger}>
+                <Link className='random' to='/random'>
+                  Random
+                </Link>
+              </li>
               <li>
                 <Link to='/favs'>Favs</Link>
               </li>
