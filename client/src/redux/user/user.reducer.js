@@ -4,7 +4,7 @@ import storage from 'redux-persist/lib/storage';
 
 const INIT_STATE = {
   currentUser: null,
-  userErr: [],
+  userErr: '',
   resetPasswordSuccess: false,
 };
 export const userReducer = (state = INIT_STATE, action) => {

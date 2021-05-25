@@ -1,7 +1,101 @@
+@import '../../colors';
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  .hamburger,
+  .menu__hamburger {
+    display: none;
+  }
+  @media (max-width: 500px) {
+    // hamburger no active
+    .logo,
+    .menu {
+      display: none;
+    }
+    .hamburger,
+    .menu__hamburger {
+      display: block;
+    }
+    .menu__hamburger {
+      background-color: $dark;
+      z-index: 1;
+      padding-top: 60px;
+      height: 100vh;
+      width: 100vw;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100vw);
+      text-align: center;
+      li {
+        display: block;
+        margin-bottom: 30px;
+      }
+      transition: transform 0.3s 0.1s ease-in-out;
+    }
+    .hamburger {
+      z-index: 2;
+      cursor: pointer;
+      width: 35px;
+      height: 24px;
+      background-color: transparent;
+      border: 0;
+      margin: 15px;
+      padding: 0;
+      margin-right: 15px;
+      transition: transform 0.4s 0.1s ease-in-out;
+    }
+    .hamburger__box {
+      position: relative;
+      display: block;
+      width: 100%;
+    }
+    @mixin hamburger-line {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      height: 3px;
+      background-color: white;
+    }
+    .hamburger__inner {
+      @include hamburger-line;
+
+      top: 50%;
+      transform: translateY(-50%);
+      transition: background-color 0.3s 0.1s ease-in-out;
+    }
+    .hamburger__inner::before,
+    .hamburger__inner::after {
+      @include hamburger-line;
+
+      content: '';
+      transition: transform 0.3s 0.1s ease-in-out;
+    }
+    .hamburger__inner::before {
+      top: -10px;
+    }
+    .hamburger__inner::after {
+      top: 10px;
+    }
+    // hamburger active
+    .hamburger--active {
+      transform: translateX(80vw);
+    }
+
+    .menu__hamburger--active {
+      transform: translateX(0);
+    }
+    .hamburger--active .hamburger__inner {
+      background-color: transparent;
+    }
+    .hamburger--active .hamburger__inner::before {
+      transform: translateY(10px) rotate(45deg);
+    }
+    .hamburger--active .hamburger__inner::after {
+      transform: translateY(-10px) rotate(-45deg);
+    }
+  }
   .logo {
     img {
       width: 150px;
@@ -24,5 +118,8 @@ header {
       text-transform: uppercase;
       color: white;
     }
+  }
+  .random {
+    color: $lightRed;
   }
 }
