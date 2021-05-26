@@ -84,7 +84,7 @@ function Login({ userErr }) {
             Signin with Facebook
           </Button>
           <p onClick={handleForgotPassword}>Forgot password?</p>
-          {userErr.length > 0 && <p className='error'>{userErr}</p>}
+          {userErr?.length > 0 && <p className='error'>{userErr}</p>}
         </form>
       </div>
     </section>
@@ -92,7 +92,7 @@ function Login({ userErr }) {
 }
 
 Login.propTypes = {
-  userErr: PropTypes.string.isRequired,
+  userErr: PropTypes.string,
 };
 
 export default Login;

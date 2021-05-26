@@ -51,6 +51,9 @@ function Reset({ userErr }) {
             {errors.email?.type === 'required' && (
               <span>Email is required</span>
             )}
+            {errors.email?.type === 'minLength' && (
+              <span>Minimum 5 characters</span>
+            )}
             <Input
               {...register('email', { required: true, minLength: 5 })}
               placeholder='Email'
@@ -84,7 +87,7 @@ function Reset({ userErr }) {
 }
 
 Reset.propTypes = {
-  userErr: PropTypes.string.isRequired,
+  userErr: PropTypes.string,
 };
 
 export default Reset;

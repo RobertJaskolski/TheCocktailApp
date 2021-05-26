@@ -9,11 +9,11 @@ const Random = () => {
   const [drinks, setDrinks] = useState([]);
   const [error, setError] = useState('');
   const [isUnmount, setIsUnmount] = useState(false);
-  const fetchDrinks = () => {
+  const fetchRandomDrinks = () => {
     setIsLoading(true);
     randomDrinks()
       .then((res) => {
-        setDrinks([...res]);
+        setDrinks(res);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -24,9 +24,14 @@ const Random = () => {
   };
 
   useEffect(() => {
-    fetchDrinks();
+    fetchRandomDrinks();
+    return () => {
+      setError('');
+      setIsLoading(false);
+      setIsUnmount(false);
+      setDrinks([]);
+    };
   }, []);
-
   return (
     <section className='random-drinks__container'>
       <h1 className='random-drinks__title'>Random drinks</h1>
@@ -52,7 +57,7 @@ const Random = () => {
         className='random-drinks__button'
         onClick={() => {
           setIsUnmount(true);
-          setTimeout(() => fetchDrinks(), 1050);
+          setTimeout(() => fetchRandomDrinks(), 1050);
         }}
       >
         Let's draw again!
