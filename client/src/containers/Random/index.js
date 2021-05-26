@@ -46,6 +46,7 @@ const Random = () => {
       </section>
 
       <button
+        aria-label='Draw new random drinks'
         className='random-drinks__button'
         onClick={() => {
           setIsUnmount(true);

@@ -1,13 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { checkUserSession } from './redux/user/user.actions';
 import './main.scss';
-// Containers (pages)
-import Login from './containers/Login';
-import Home from './containers/Home';
-import Register from './containers/Register';
-import Reset from './containers/Reset';
 
 // HOC's
 import WithAuth from './hoc/WithAuth';
@@ -17,6 +12,12 @@ import WithUserError from './hoc/WithUserError';
 // Layouts
 import MainLayout from './Layouts/MainLayout';
 import Random from './containers/Random';
+
+// Containers (pages)
+const Login = lazy(() => import('./containers/Login'));
+const Home = lazy(() => import('./containers/Home'));
+const Register = lazy(() => import('./containers/Register'));
+const Reset = lazy(() => import('./containers/Reset'));
 
 const WithUserErrorReset = WithUserError(Reset);
 const WithUserErrorRegister = WithUserError(Register);
@@ -37,7 +38,9 @@ function App() {
           path='/'
           render={() => (
             <MainLayout>
-              <Home />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Home />
+              </Suspense>
             </MainLayout>
           )}
         />
@@ -46,7 +49,9 @@ function App() {
           render={() => (
             <MainLayout>
               <WithNotAuth>
-                <WithUserErrorLogin />
+                <Suspense fallback={<div>Loading...</div>}>
+                  <WithUserErrorLogin />
+                </Suspense>
               </WithNotAuth>
             </MainLayout>
           )}
@@ -56,7 +61,9 @@ function App() {
           render={() => (
             <MainLayout>
               <WithNotAuth>
-                <WithUserErrorRegister />
+                <Suspense fallback={<div>Loading...</div>}>
+                  <WithUserErrorRegister />
+                </Suspense>
               </WithNotAuth>
             </MainLayout>
           )}
@@ -66,7 +73,9 @@ function App() {
           render={() => (
             <MainLayout>
               <WithNotAuth>
-                <WithUserErrorReset />
+                <Suspense fallback={<div>Loading...</div>}>
+                  <WithUserErrorReset />
+                </Suspense>
               </WithNotAuth>
             </MainLayout>
           )}
@@ -75,7 +84,9 @@ function App() {
           path='/random'
           render={() => (
             <MainLayout>
-              <Random />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Random />
+              </Suspense>
             </MainLayout>
           )}
         />
@@ -84,7 +95,9 @@ function App() {
           render={() => (
             <WithAuth>
               <MainLayout>
-                <h1>Favs</h1>
+                <Suspense fallback={<div>Loading...</div>}>
+                  <h1>Favs</h1>
+                </Suspense>
               </MainLayout>
             </WithAuth>
           )}

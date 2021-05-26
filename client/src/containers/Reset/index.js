@@ -74,7 +74,7 @@ function Reset({ userErr }) {
             />
           </div>
           <div>
-            <Button>Reset</Button>
+            <Button aria-label='Reset password'>Reset</Button>
           </div>
           {userErr.length > 0 && <p>{userErr}</p>}
         </form>

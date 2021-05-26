@@ -29,6 +29,7 @@ function Header() {
         </Link>
       </div>
       <button
+        aria-label='hamburger menu'
         className={
           hamburgerIsActive ? 'hamburger--active hamburger' : 'hamburger'
         }

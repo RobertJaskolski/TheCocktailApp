@@ -75,12 +75,12 @@ function Login({ userErr }) {
               type='password'
             />
           </div>
-          <Button>Signin</Button>
-          <Button onClick={handleGoogleSignIn}>
+          <Button aria-label='Signin'>Signin</Button>
+          <Button aria-label='Signin with google' onClick={handleGoogleSignIn}>
             <img src={GoogleLogo} alt='google logo' />
             Signin with Google
           </Button>
-          <Button>
+          <Button aria-label='Signin with facebook'>
             <img src={FacebookLogo} alt='google logo' />
             Signin with Facebook
           </Button>
