@@ -20,7 +20,6 @@ function Login({ userErr }) {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
   } = useForm();
 
   const handleGoogleSignIn = () => {
@@ -93,7 +92,7 @@ function Login({ userErr }) {
 }
 
 Login.propTypes = {
-  userErr: PropTypes.string,
+  userErr: PropTypes.string.isRequired,
 };
 
 export default Login;

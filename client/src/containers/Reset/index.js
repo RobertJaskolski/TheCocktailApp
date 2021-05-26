@@ -40,7 +40,7 @@ function Reset({ userErr }) {
       dispatch(resetUserState());
       history.push('/login');
     }
-  }, [resetPasswordSuccess]);
+  }, [resetPasswordSuccess, history, dispatch]);
 
   return (
     <section className='reset'>
@@ -84,7 +84,7 @@ function Reset({ userErr }) {
 }
 
 Reset.propTypes = {
-  userErr: PropTypes.string,
+  userErr: PropTypes.string.isRequired,
 };
 
 export default Reset;

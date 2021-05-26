@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     dispatch(checkUserSession());
-  }, []);
+  });
 
   return (
     <div className='App'>

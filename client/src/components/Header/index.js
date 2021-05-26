@@ -25,7 +25,7 @@ function Header() {
     <header>
       <div className='logo'>
         <Link to='/'>
-          <img alt='Logo' src={Logo} />
+          <img loading='lazy' alt='Logo' src={Logo} />
         </Link>
       </div>
       <button

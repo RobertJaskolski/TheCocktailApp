@@ -2,6 +2,7 @@ import React from 'react';
 import './styles.scss';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
 const RandomDrinkCard = ({ drink, isUnmount }) => {
   const { strDrinkThumb, strDrink, idDrink } = drink;
   if (!drink) return null;
@@ -17,9 +18,9 @@ const RandomDrinkCard = ({ drink, isUnmount }) => {
 
 RandomDrinkCard.propTypes = {
   drink: PropTypes.shape({
-    strDrinkThumb: PropTypes.string,
-    strDrink: PropTypes.string,
-    idDrink: PropTypes.string,
+    strDrinkThumb: PropTypes.string.isRequired,
+    strDrink: PropTypes.string.isRequired,
+    idDrink: PropTypes.string.isRequired,
   }),
 };
 

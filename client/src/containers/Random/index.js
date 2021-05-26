@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import RandomDrinkCard from '../../components/Random/RandomDrinkCard';
 import randomDrinks from '../../api/randomDrinks';
+import Button from '../../components/form/Button';
 import './styles.scss';
 
 const Random = () => {
@@ -32,6 +33,7 @@ const Random = () => {
       <h2 className='random-drinks__subtitle'>
         Choose one of the three drinks below.
       </h2>
+      {error.length > 0 && <h3>{error}</h3>}
       <section className='random-drinks__cards-wrapper'>
         {Array.isArray(drinks) &&
           drinks.length > 0 &&
@@ -45,7 +47,7 @@ const Random = () => {
           ))}
       </section>
 
-      <button
+      <Button
         aria-label='Draw new random drinks'
         className='random-drinks__button'
         onClick={() => {
@@ -54,7 +56,7 @@ const Random = () => {
         }}
       >
         Let's draw again!
-      </button>
+      </Button>
     </section>
   );
 };
