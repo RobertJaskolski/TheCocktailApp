@@ -92,6 +92,16 @@ function App() {
           )}
         />
         <Route
+          path="/ingredients"
+          render={() => (
+            <WithAuth>
+              <MainLayout>
+                <IngredientSearch />
+              </MainLayout>
+            </WithAuth>
+          )}
+        />
+        <Route
           path='/favs'
           render={() => (
             <WithAuth>
