@@ -13,7 +13,7 @@ const useNotAuth = (props) => {
     if (currentUser) {
       history.push('/');
     }
-  }, [currentUser]);
+  }, [currentUser, history]);
   return currentUser;
 };
 

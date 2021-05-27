@@ -1,18 +1,60 @@
 @import '../../colors';
+
+@keyframes renderCard {
+  0% {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes unmountCard {
+  0% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+}
+
 .random-drinks__container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  h1 {
-    font-size: 2rem;
-  }
 }
 
 .random-drinks__cards-wrapper {
   min-height: 350px;
   display: flex;
   justify-content: center;
+  a {
+    &.enter:first-of-type {
+      animation: renderCard 0.3s ease-in-out 0.1s both;
+    }
+    &.enter:nth-child(2) {
+      animation: renderCard 0.3s ease-in-out 0.4s both;
+    }
+    &.enter:last-of-type {
+      animation: renderCard 0.3s ease-in-out 0.7s both;
+    }
+    &.leave:first-of-type {
+      animation: unmountCard 0.3s ease-in-out 0.1s both;
+    }
+    &.leave:nth-child(2) {
+      animation: unmountCard 0.3s ease-in-out 0.4s both;
+    }
+    &.leave:last-of-type {
+      animation: unmountCard 0.3s ease-in-out 0.7s both;
+    }
+  }
 }
 
 .random-drinks__title {
@@ -55,5 +97,17 @@
   .random-drinks__cards-wrapper {
     min-height: 400px;
     flex-direction: column;
+  }
+}
+
+@keyframes renderCard {
+  0% {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
   }
 }

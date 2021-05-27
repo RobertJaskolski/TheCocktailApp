@@ -1,27 +1,6 @@
-@import '../../../colors';
-
-@keyframes renderCard {
-  0% {
-    opacity: 0;
-    transform: translateX(-200px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateX(0px);
-  }
-}
+@import '../../colors';
 
 .random-drink-card__container {
-  &:first-of-type {
-    animation: renderCard 0.4s ease-in-out 0.2s both;
-  }
-  &:nth-child(2) {
-    animation: renderCard 0.4s ease-in-out 0.6s both;
-  }
-  &:last-of-type {
-    animation: renderCard 0.4s ease-in-out 1s both;
-  }
   display: flex;
   position: relative;
   flex-direction: column;
@@ -30,7 +9,8 @@
   text-align: center;
   border: 2px solid white;
   width: 220px;
-  margin: 0px 20px;
+  min-height: 100%;
+  margin: 0px 5px;
   padding: 10px;
   transition: background-color 0.2s 0.05s ease-in-out;
   &:hover {
