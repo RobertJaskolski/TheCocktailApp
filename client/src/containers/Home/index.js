@@ -1,21 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import './styles.scss';
-import Button from '../../components/form/Button';
-import { useDispatch, useSelector } from 'react-redux';
-import { ingredientsFetchStart } from '../../redux/filters/filters.actions';
-import Ingredients from '../../components/Ingredients';
-const mapState = ({ filters }) => ({
-  ingredients: filters['ingredientsList'],
-});
+import { useDispatch } from 'react-redux';
+import List from '../../components/List';
+import {
+  categoriesFetchStart,
+  glassesFetchStart,
+  alcoholicFiltersFetchStart,
+  ingredientsFetchStart,
+} from '../../redux/filters/filters.actions';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 function Home() {
   const dispatch = useDispatch();
-  const { ingredients } = useSelector(mapState);
-  const [showFilters, setShowFilters] = useState(false);
-  const [moreIngredients, setMoreIngredients] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState('categories');
+  const handleChangeFilter = (e) => {
+    if (e.target.value === 'ingredients') dispatch(ingredientsFetchStart());
+    if (e.target.value === 'glasses') dispatch(glassesFetchStart());
+    if (e.target.value === 'categories') dispatch(categoriesFetchStart());
+    if (e.target.value === 'alcoholicFilters')
+      dispatch(alcoholicFiltersFetchStart());
+    setSelectedFilter(e.target.value);
+  };
+
   useEffect(() => {
-    dispatch(ingredientsFetchStart());
+    dispatch(categoriesFetchStart());
   }, [dispatch]);
+
   return (
     <section className='home'>
       <div className='wrapper'>
@@ -27,50 +40,24 @@ function Home() {
           <input type='text' placeholder='Enter the name of the cocktail' />
         </div>
         <div className='filters'>
-          <Button
-            aria-label='filters'
-            onClick={() => setShowFilters(!showFilters)}
-            className={showFilters ? 'active filterButton' : 'filterButton'}
-          >
-            <span>Filters</span>
-          </Button>
-          <div className={showFilters ? 'active filterPanel' : 'filterPanel'}>
-            <div className='filtersSelect'>
-              <select>
-                <option>Ingredients</option>
-                <option>Glasses</option>
-                <option>Categories</option>
-                <option>Alcoholic filters</option>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls='panel1a-content'
+              id='panel1a-header'
+            >
+              <h1>Filters</h1>
+            </AccordionSummary>
+            <AccordionDetails>
+              <select value={selectedFilter} onChange={handleChangeFilter}>
+                <option value='ingredients'>Ingredients</option>
+                <option value='glasses'>Glasses</option>
+                <option value='categories'>Categories</option>
+                <option value='alcoholicFilters'>Alcoholic filters</option>
               </select>
-              <div className='container'>
-                {Array.isArray(ingredients) && ingredients.length > 0 ? (
-                  ingredients
-                    .slice(0, 50)
-                    .map((item) => (
-                      <Ingredients
-                        name={item.strIngredient1}
-                        key={item.strIngredient1}
-                      />
-                    ))
-                ) : (
-                  <div>Loading...</div>
-                )}
-                {moreIngredients &&
-                  ingredients
-                    .slice(50)
-                    .map((item) => (
-                      <Ingredients
-                        name={item.strIngredient1}
-                        key={item.strIngredient1}
-                      />
-                    ))}
-              </div>
-
-              <Button onClick={() => setMoreIngredients(!moreIngredients)}>
-                {moreIngredients ? 'Hidde' : 'Load more'}
-              </Button>
-            </div>
-          </div>
+              <List listType={selectedFilter} />
+            </AccordionDetails>
+          </Accordion>
         </div>
       </div>
     </section>

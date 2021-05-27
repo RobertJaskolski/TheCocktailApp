@@ -1,13 +1,13 @@
 import React from 'react';
 import './styles.scss';
 
-function Ingredients({ name }) {
+function RadioFilter({ name, type }) {
   return (
     <label>
-      <input type='checkbox' value={name} />
+      <input type='radio' name={type} value={name} />
       <span>{name}</span>
     </label>
   );
 }
 
-export default Ingredients;
+export default RadioFilter;

@@ -5,7 +5,12 @@ const Input = React.forwardRef(
   ({ handleChange, label, ...otherProps }, ref) => (
     <>
       {label && <label>{label}</label>}
-      <input ref={ref} onChange={handleChange} {...otherProps} />
+      <input
+        className='inputField'
+        ref={ref}
+        onChange={handleChange}
+        {...otherProps}
+      />
     </>
   )
 );
