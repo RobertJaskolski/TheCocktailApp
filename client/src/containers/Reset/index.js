@@ -40,7 +40,7 @@ function Reset({ userErr }) {
       dispatch(resetUserState());
       history.push('/login');
     }
-  }, [resetPasswordSuccess]);
+  }, [resetPasswordSuccess, history, dispatch]);
 
   return (
     <section className='reset'>
@@ -50,6 +50,9 @@ function Reset({ userErr }) {
           <div>
             {errors.email?.type === 'required' && (
               <span>Email is required</span>
+            )}
+            {errors.email?.type === 'minLength' && (
+              <span>Minimum 5 characters</span>
             )}
             <Input
               {...register('email', { required: true, minLength: 5 })}
@@ -74,7 +77,7 @@ function Reset({ userErr }) {
             />
           </div>
           <div>
-            <Button>Reset</Button>
+            <Button aria-label='Reset password'>Reset</Button>
           </div>
           {userErr.length > 0 && <p>{userErr}</p>}
         </form>

@@ -1,7 +1,7 @@
 import "./styles.scss";
-import {useCallback, useEffect, useState} from "react";
+import { useCallback, useEffect, useState } from "react";
 import IngredientRowItem from "../../components/IngredientSearch/IngredientRowItem";
-import {readDrinksListByIngredients} from "../../api/ingredientsRepository";
+import { readDrinksListByIngredients } from "../../api/ingredientsRepository";
 
 
 export default function IngredientSearch() {
@@ -24,20 +24,7 @@ export default function IngredientSearch() {
         loadDrinks();
     }, [loadDrinks]);
 
-    // const ingredients = [
-    //     {
-    //         name: "Vodka",
-    //         selected: false
-    //     },
-    //     {
-    //         name: "Lemon",
-    //         selected: false
-    //     },
-    //     {
-    //         name: "Water",
-    //         selected: false
-    //     }
-    // ]
+
 
     const handleIngredientSelection = id => {
         console.log(id)
@@ -62,7 +49,7 @@ export default function IngredientSearch() {
 
             <div className="ingredients-search__list_container">
                 {ingredients.map(x => <IngredientRowItem ingredient={x} onSelect={handleIngredientSelection} />)}
-
+            </div>
 
             <button onClick={() => setDrinks([])}>
                 Find!

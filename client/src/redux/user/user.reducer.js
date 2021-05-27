@@ -13,7 +13,7 @@ export const userReducer = (state = INIT_STATE, action) => {
       return {
         ...state,
         currentUser: action.payload,
-        userErr: [],
+        userErr: '',
       };
     case userTypes.RESET_PASSWORD_SUCCESS:
       return { ...state, resetPasswordSuccess: action.payload };
