@@ -18,6 +18,7 @@ const Login = lazy(() => import('./containers/Login'));
 const Home = lazy(() => import('./containers/Home'));
 const Register = lazy(() => import('./containers/Register'));
 const Reset = lazy(() => import('./containers/Reset'));
+const IngredientSearch = lazy(() => import('./containers/IngredientSearch'));
 
 
 const WithUserErrorReset = WithUserError(Reset);
@@ -96,7 +97,9 @@ function App() {
           render={() => (
             <WithAuth>
               <MainLayout>
-                <IngredientSearch />
+                <Suspense fallback={<div>Loading...</div>}>
+                  <IngredientSearch />
+                </Suspense>
               </MainLayout>
             </WithAuth>
           )}

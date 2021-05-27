@@ -19,35 +19,35 @@
   // justify-content: center;
 }
 
-// input[type="checkbox"] {
-//   -webkit-appearance: none;
-//   -moz-appearance: none;
-//   appearance: none;
-//   display: inline-block;
-//   width: 25px;
-//   height: 25px;
-//   padding: 6px;
-//   background-clip: content-box;
-//   border: 1.5px solid #bbbbbb;
-//   border-radius: 6px;
-//   background-color: #e7e6e7;
-//   margin-left: 15px;
-//   position: relative;
-//   vertical-align: middle;
-//   justify-content: center;
-//   text-align: center;
-//   margin-top: auto;
-//   margin-bottom: auto;
-//   margin-right: 15px;
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  padding: 6px;
+  background-clip: content-box;
+  border: 1.5px solid #bbbbbb;
+  border-radius: 6px;
+  background-color: #e7e6e7;
+  margin-left: 15px;
+  position: relative;
+  vertical-align: middle;
+  justify-content: center;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 15px;
 
-//   &:checked {
-//     background-color: black;
-//   }
+  &:checked {
+    background-color: black;
+  }
 
-//   &:focus {
-//     outline: none !important;
-//   }
-// }
+  &:focus {
+    outline: none !important;
+  }
+}
 
 .title {
   color: white;
