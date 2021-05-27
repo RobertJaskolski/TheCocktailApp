@@ -25,10 +25,11 @@ function Header() {
     <header>
       <div className='logo'>
         <Link to='/'>
-          <img alt='Logo' src={Logo} />
+          <img loading='lazy' alt='Logo' src={Logo} />
         </Link>
       </div>
       <button
+        aria-label='hamburger menu'
         className={
           hamburgerIsActive ? 'hamburger--active hamburger' : 'hamburger'
         }

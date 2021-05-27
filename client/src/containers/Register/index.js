@@ -150,7 +150,9 @@ function Register({ userErr }) {
             />
           </div>
           <div>
-            <Button type='submit'>Signup</Button>
+            <Button aria-label='Signup' type='submit'>
+              Signup
+            </Button>
           </div>
           {userErr.length > 0 && <p>{userErr}</p>}
         </form>
