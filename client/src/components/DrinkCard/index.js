@@ -3,7 +3,7 @@ import './styles.scss';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const RandomDrinkCard = ({ drink, isUnmount }) => {
+const DrinkCard = ({ drink, isUnmount }) => {
   const { strDrinkThumb, strDrink, idDrink } = drink;
   if (!drink) return null;
   return (
@@ -16,7 +16,7 @@ const RandomDrinkCard = ({ drink, isUnmount }) => {
   );
 };
 
-RandomDrinkCard.propTypes = {
+DrinkCard.propTypes = {
   drink: PropTypes.shape({
     strDrinkThumb: PropTypes.string.isRequired,
     strDrink: PropTypes.string.isRequired,
@@ -24,4 +24,4 @@ RandomDrinkCard.propTypes = {
   }),
 };
 
-export default RandomDrinkCard;
+export default DrinkCard;
