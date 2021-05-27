@@ -1,7 +1,7 @@
 import "./styles.scss";
 import { useCallback, useEffect, useState } from "react";
 import IngredientRowItem from "../../components/IngredientSearch/IngredientRowItem";
-import { readDrinksListByIngredients } from "../../api/ingredientsRepository";
+import { fetchDrinksListByIngredients } from "../../api/ingredientsRepository";
 
 
 export default function IngredientSearch() {

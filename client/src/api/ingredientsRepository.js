@@ -1,7 +1,12 @@
-import { client } from './apiConfig';
+import {client} from "./apiConfig";
 
-const readDrinksListByIngredients = async (drinksList) => {
-    return client({ endpoint: `filter.php`, query: `i=${drinksList}` });
-};
+const fetchDrinksListByIngredients = (drinksList) =>
+    client({
+        endpoint: 'filter.php',
+        query: `i=${drinksList}`
+    }).then((res) => {
+        const {drinks} = res;
+        return drinks
+    });
 
-export { readDrinksListByIngredients };
+export default fetchDrinksListByIngredients;
