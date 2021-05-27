@@ -1,0 +1,116 @@
+@import '../../colors';
+.home {
+  max-width: 1250px;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  color: white;
+  .wrapper {
+    width: 100%;
+    .headers {
+      h1,
+      h2 {
+        padding: 0;
+        margin: 20px 0 0 0;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 4.5rem;
+        @media (max-width: 1000px) {
+          font-size: 3.5rem;
+        }
+        @media (max-width: 700px) {
+          font-size: 3rem;
+        }
+        @media (max-width: 400px) {
+          font-size: 2.5rem;
+        }
+      }
+      h2 {
+        color: $lightRed;
+        font-size: 2rem;
+        @media (max-width: 1000px) {
+          font-size: 1.5rem;
+        }
+        @media (max-width: 700px) {
+          font-size: 1.2rem;
+        }
+        @media (max-width: 400px) {
+          font-size: 1rem;
+        }
+      }
+    }
+    .search {
+      margin: 40px 0px;
+      display: flex;
+      justify-content: center;
+      input {
+        width: 100%;
+        background-color: transparent;
+        border: 0;
+        border-bottom: 2px solid white;
+        text-align: center;
+        color: white;
+        font-size: 1.9rem;
+        @media (max-width: 1000px) {
+          font-size: 1.2rem;
+        }
+        @media (max-width: 700px) {
+          font-size: 1rem;
+        }
+        @media (max-width: 400px) {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+  .filters {
+    .MuiAccordionDetails-root {
+      flex-wrap: wrap;
+    }
+    h1,
+    svg {
+      color: $lightRed;
+    }
+    h1 {
+      text-transform: uppercase;
+    }
+    select {
+      color: $lightRed;
+      flex-basis: 100%;
+      text-align-last: center;
+      font-size: 1.5rem;
+      padding: 15px 0px;
+      text-transform: uppercase;
+      border: 2px solid $lightRed;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      @media (max-width: 400px) {
+        font-size: 1rem;
+      }
+    }
+  }
+  .results {
+    @media (max-width: 800px) {
+      grid-template-columns: 50% 50%;
+    }
+    @media (max-width: 500px) {
+      grid-template-columns: 100%;
+    }
+    width: 100%;
+    margin-top: 30px;
+    grid-template-columns: 33% 33% 33%;
+    display: grid;
+    a {
+      margin-bottom: 20px;
+    }
+    .random-drink-card__container {
+      width: 90%;
+      margin: 0px auto;
+    }
+  }
+}

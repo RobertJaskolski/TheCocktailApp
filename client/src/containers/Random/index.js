@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import RandomDrinkCard from '../../components/Random/RandomDrinkCard';
+import DrinkCard from '../../components/DrinkCard';
 import randomDrinks from '../../api/randomDrinks';
 import Button from '../../components/form/Button';
 import './styles.scss';
@@ -44,7 +44,7 @@ const Random = () => {
           drinks.length > 0 &&
           !isLoading &&
           drinks.map((drink) => (
-            <RandomDrinkCard
+            <DrinkCard
               isUnmount={isUnmount}
               drink={drink}
               key={drink.idDrink}
