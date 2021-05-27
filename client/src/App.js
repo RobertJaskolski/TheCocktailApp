@@ -1,24 +1,23 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Switch, Route } from "react-router-dom";
-import { checkUserSession } from "./redux/user/user.actions";
-import "./main.scss";
-
-// Containers (pages)
-import Login from "./containers/Login";
-import Home from "./containers/Home";
-import Register from "./containers/Register";
-import Reset from "./containers/Reset";
-import IngredientSearch from "./containers/IngredientSearch"
+import React, { useEffect, lazy, Suspense } from 'react';
+import { useDispatch } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
+import { checkUserSession } from './redux/user/user.actions';
+import './main.scss';
 
 // HOC's
-import WithAuth from "./hoc/WithAuth";
-import WithNotAuth from "./hoc/WithNotAuth";
-import WithUserError from "./hoc/WithUserError";
+import WithAuth from './hoc/WithAuth';
+import WithNotAuth from './hoc/WithNotAuth';
+import WithUserError from './hoc/WithUserError';
 
 // Layouts
-import MainLayout from "./Layouts/MainLayout";
-import Random from "./containers/Random";
+import MainLayout from './Layouts/MainLayout';
+import Random from './containers/Random';
+
+// Containers (pages)
+const Login = lazy(() => import('./containers/Login'));
+const Home = lazy(() => import('./containers/Home'));
+const Register = lazy(() => import('./containers/Register'));
+const Reset = lazy(() => import('./containers/Reset'));
 
 
 const WithUserErrorReset = WithUserError(Reset);
@@ -30,76 +29,76 @@ function App() {
 
   useEffect(() => {
     dispatch(checkUserSession());
-  }, []);
+  });
 
   return (
-    <div className="App">
+    <div className='App'>
       <Switch>
         <Route
           exact
-          path="/"
+          path='/'
           render={() => (
             <MainLayout>
-              <Home />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Home />
+              </Suspense>
             </MainLayout>
           )}
         />
         <Route
-          path="/login"
+          path='/login'
           render={() => (
-            <WithNotAuth>
-              <MainLayout>
-                <WithUserErrorLogin />
-              </MainLayout>
-            </WithNotAuth>
+            <MainLayout>
+              <WithNotAuth>
+                <Suspense fallback={<div>Loading...</div>}>
+                  <WithUserErrorLogin />
+                </Suspense>
+              </WithNotAuth>
+            </MainLayout>
           )}
         />
         <Route
-          path="/register"
+          path='/register'
           render={() => (
-            <WithNotAuth>
-              <MainLayout>
-                <WithUserErrorRegister />
-              </MainLayout>
-            </WithNotAuth>
+            <MainLayout>
+              <WithNotAuth>
+                <Suspense fallback={<div>Loading...</div>}>
+                  <WithUserErrorRegister />
+                </Suspense>
+              </WithNotAuth>
+            </MainLayout>
           )}
         />
         <Route
-          path="/reset"
+          path='/reset'
           render={() => (
-            <WithNotAuth>
-              <MainLayout>
-                <WithUserErrorReset />
-              </MainLayout>
-            </WithNotAuth>
+            <MainLayout>
+              <WithNotAuth>
+                <Suspense fallback={<div>Loading...</div>}>
+                  <WithUserErrorReset />
+                </Suspense>
+              </WithNotAuth>
+            </MainLayout>
           )}
         />
         <Route
-          path="/random"
+          path='/random'
           render={() => (
-            <WithAuth>
-              <MainLayout>
+            <MainLayout>
+              <Suspense fallback={<div>Loading...</div>}>
                 <Random />
-              </MainLayout>
-            </WithAuth>
+              </Suspense>
+            </MainLayout>
           )}
         />
         <Route
-          path="/ingredients"
+          path='/favs'
           render={() => (
             <WithAuth>
               <MainLayout>
-                <IngredientSearch />
-              </MainLayout>
-            </WithAuth>
-          )}
-        />
-        <Route
-          path="/favs"
-          render={() => (
-            <WithAuth>
-              <MainLayout>
-                <h1>Favs</h1>
+                <Suspense fallback={<div>Loading...</div>}>
+                  <h1>Favs</h1>
+                </Suspense>
               </MainLayout>
             </WithAuth>
           )}

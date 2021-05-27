@@ -1,49 +1,69 @@
-import { useCallback, useEffect, useState } from "react";
-import RandomDrinkCard from "../../components/Random/RandomDrinkCard";
-import { readRandomDrinks } from "../../api/drinksClient";
-import "./styles.scss";
+import React, { useEffect, useState } from 'react';
+import RandomDrinkCard from '../../components/Random/RandomDrinkCard';
+import randomDrinks from '../../api/randomDrinks';
+import Button from '../../components/form/Button';
+import './styles.scss';
 
 const Random = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [drinks, setDrinks] = useState([]);
-
-  const loadRandomDrinks = useCallback(() => {
-    if (drinks.length === 0) {
-      readRandomDrinks().then((data) => {
-        console.log(data);
-        setDrinks(data.drinks);
+  const [error, setError] = useState('');
+  const [isUnmount, setIsUnmount] = useState(false);
+  const fetchRandomDrinks = () => {
+    setIsLoading(true);
+    randomDrinks()
+      .then((res) => {
+        setDrinks(res);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
         setIsLoading(false);
       });
-    }
-  }, [drinks]);
+    setIsUnmount(false);
+  };
 
   useEffect(() => {
-    loadRandomDrinks();
-  }, [loadRandomDrinks]);
+    fetchRandomDrinks();
+    return () => {
+      setError('');
+      setIsLoading(false);
+      setIsUnmount(false);
+      setDrinks([]);
+    };
+  }, []);
+  return (
+    <section className='random-drinks__container'>
+      <h1 className='random-drinks__title'>Random drinks</h1>
+      <h2 className='random-drinks__subtitle'>
+        Choose one of the three drinks below.
+      </h2>
+      {error.length > 0 && <h3>{error}</h3>}
+      <section className='random-drinks__cards-wrapper'>
+        {Array.isArray(drinks) &&
+          drinks.length > 0 &&
+          !isLoading &&
+          drinks.map((drink) => (
+            <RandomDrinkCard
+              isUnmount={isUnmount}
+              drink={drink}
+              key={drink.idDrink}
+            />
+          ))}
+      </section>
 
-  if (isLoading || drinks.length === 0) {
-    // TODO: Loader component?
-    return <div></div>;
-  } else {
-    return (
-      <div className="random-drinks__container">
-        <h1 className="random-drinks__title">Random drinks</h1>
-        <h2 className="random-drinks__subtitle">
-          Choose one of the three drinks below.
-        </h2>
-
-        <div className="random-drinks__cards-wrapper">
-          <RandomDrinkCard drink={drinks[0]} />
-          <RandomDrinkCard drink={drinks[1]} />
-          <RandomDrinkCard drink={drinks[2]} />
-        </div>
-
-        <button className="random-drinks__button" onClick={() => setDrinks([])}>
-          Let's draw again!
-        </button>
-      </div>
-    );
-  }
+      <Button
+        aria-label='Draw new random drinks'
+        className='random-drinks__button'
+        onClick={() => {
+          setIsUnmount(true);
+          setTimeout(() => fetchRandomDrinks(), 1050);
+        }}
+      >
+        Let's draw again!
+      </Button>
+    </section>
+  );
 };
 
 export default Random;

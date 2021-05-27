@@ -1,5 +1,6 @@
 import React from 'react';
 import './styles.scss';
+import PropTypes from 'prop-types';
 import Button from '../../components/form/Button';
 import Input from '../../components/form/Input';
 import {
@@ -19,7 +20,6 @@ function Login({ userErr }) {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
   } = useForm();
 
   const handleGoogleSignIn = () => {
@@ -74,21 +74,25 @@ function Login({ userErr }) {
               type='password'
             />
           </div>
-          <Button>Signin</Button>
-          <Button onClick={handleGoogleSignIn}>
+          <Button aria-label='Signin'>Signin</Button>
+          <Button aria-label='Signin with google' onClick={handleGoogleSignIn}>
             <img src={GoogleLogo} alt='google logo' />
             Signin with Google
           </Button>
-          <Button>
+          <Button aria-label='Signin with facebook'>
             <img src={FacebookLogo} alt='google logo' />
             Signin with Facebook
           </Button>
           <p onClick={handleForgotPassword}>Forgot password?</p>
-          {userErr.length > 0 && <p className='error'>{userErr}</p>}
+          {userErr?.length > 0 && <p className='error'>{userErr}</p>}
         </form>
       </div>
     </section>
   );
 }
+
+Login.propTypes = {
+  userErr: PropTypes.string,
+};
 
 export default Login;

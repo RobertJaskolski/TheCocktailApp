@@ -1,5 +1,6 @@
 import React from 'react';
 import './styles.scss';
+import PropTypes from 'prop-types';
 import Input from '../../components/form/Input';
 import Button from '../../components/form/Button';
 import { signUpUserStart } from '../../redux/user/user.actions';
@@ -149,7 +150,9 @@ function Register({ userErr }) {
             />
           </div>
           <div>
-            <Button type='submit'>Signup</Button>
+            <Button aria-label='Signup' type='submit'>
+              Signup
+            </Button>
           </div>
           {userErr.length > 0 && <p>{userErr}</p>}
         </form>
@@ -157,5 +160,9 @@ function Register({ userErr }) {
     </section>
   );
 }
+
+Register.propTypes = {
+  userErr: PropTypes.string,
+};
 
 export default Register;

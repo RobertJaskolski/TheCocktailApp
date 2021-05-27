@@ -5,7 +5,7 @@ const mapState = ({ user }) => ({
   userErr: user['userErr'],
 });
 
-export default (WrappedComponent) => {
+const WithUserErr = (WrappedComponent) => {
   const WithUserError = ({ ...props }) => {
     const dispatch = useDispatch();
     const { userErr } = useSelector(mapState);
@@ -13,9 +13,11 @@ export default (WrappedComponent) => {
       return () => {
         dispatch(userError(''));
       };
-    }, []);
+    }, [dispatch]);
     return <WrappedComponent userErr={userErr} {...props} />;
   };
 
   return WithUserError;
 };
+
+export default WithUserErr;
