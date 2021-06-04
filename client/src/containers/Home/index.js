@@ -14,8 +14,9 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import getDrinksByName from '../../api/getDrinksByName';
-import _, { isError } from 'lodash';
+import _ from 'lodash';
 import DrinkCard from '../../components/DrinkCard';
+import { drinksFetchStart } from '../../redux/drinks/drinks.actions';
 
 function Home() {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ function Home() {
         setError(err);
         setIsLoading(false);
       });
+    dispatch(drinksFetchStart(name));
     setIsUnmount(false);
   };
 

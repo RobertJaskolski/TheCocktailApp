@@ -1,0 +1,7 @@
+const drinksTypes = {
+  DRINKS_FETCH_START: 'DRINKS_FETCH_START',
+  DRINKS_FETCH_SUCCESS: 'DRINKS_FETCH_SUCCESS',
+  DRINKS_ERROR: 'DRINKS_ERROR',
+};
+
+export default drinksTypes;
