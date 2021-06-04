@@ -1,6 +1,12 @@
 import React from 'react';
 import './styles.scss';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  setAlcoholicFilter,
+  setGlass,
+  setCategory,
+  setIngerients,
+} from '../../redux/settings/settings.actions';
 import RadioFilter from '../RadioFilter';
 import CheckBoxFilter from '../CheckBoxFilter';
 
@@ -12,8 +18,31 @@ const mapState = ({ filters }) => ({
 });
 
 function List({ listType }) {
+  const dispatch = useDispatch();
   const { ingredients, categories, glasses, alcoholicFilters } =
     useSelector(mapState);
+  const handleOnCheck = (e) => {
+    if (e.target.checked) {
+      switch (e.target.name) {
+        case 'categories':
+          dispatch(setCategory(e.target.value));
+          break;
+        case 'ingredients':
+          dispatch(setIngerients(e.target.value));
+          break;
+        case 'glasses':
+          dispatch(setGlass(e.target.value));
+          break;
+        case 'alcoholicFilters':
+          dispatch(setAlcoholicFilter(e.target.value));
+          break;
+
+        default:
+          break;
+      }
+    }
+  };
+
   return (
     <div className='containerList'>
       {listType === 'categories' &&
@@ -24,6 +53,7 @@ function List({ listType }) {
             key={item.strCategory}
             name={item.strCategory}
             type='categories'
+            handleOnCheck={handleOnCheck}
           />
         ))}
       {listType === 'glasses' &&
@@ -34,6 +64,7 @@ function List({ listType }) {
             key={item.strGlass}
             name={item.strGlass}
             type='glasses'
+            handleOnCheck={handleOnCheck}
           />
         ))}
       {listType === 'ingredients' &&
@@ -44,6 +75,7 @@ function List({ listType }) {
             key={item.strIngredient1}
             name={item.strIngredient1}
             type='ingredients'
+            handleOnCheck={handleOnCheck}
           />
         ))}
       {listType === 'alcoholicFilters' &&
@@ -54,6 +86,7 @@ function List({ listType }) {
             key={item.strAlcoholic}
             name={item.strAlcoholic}
             type='alcoholicFilters'
+            handleOnCheck={handleOnCheck}
           />
         ))}
     </div>

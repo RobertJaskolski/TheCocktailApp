@@ -12,8 +12,9 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import getDrinksByName from '../../api/getDrinksByName';
-import _ from 'lodash';
+import _, { isError } from 'lodash';
 import DrinkCard from '../../components/DrinkCard';
 
 function Home() {
@@ -98,6 +99,8 @@ function Home() {
             </AccordionDetails>
           </Accordion>
         </div>
+        {isLoading && <LinearProgress />}
+        {error && 'Network problems'}
       </div>
       <div className='results'>
         {Array.isArray(drinks) &&
