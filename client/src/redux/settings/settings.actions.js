@@ -23,3 +23,20 @@ export const setAlcoholicFilter = (filter) => ({
 export const clearSettings = () => ({
   type: settingTypes.CLEAR_SETTINGS,
 });
+
+export const unsetIngerients = (filter) => ({
+  type: settingTypes.UNSET_INGREDIENTS,
+  payload: filter,
+});
+
+export const unsetCategory = () => ({
+  type: settingTypes.UNSET_CATEGORY,
+});
+
+export const unsetGlass = () => ({
+  type: settingTypes.UNSET_GLASS,
+});
+
+export const unsetAlcoholicFilter = () => ({
+  type: settingTypes.UNSET_ALCOHOLIC_FILTER,
+});

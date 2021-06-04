@@ -18,6 +18,22 @@ const settingsReducer = (state = INIT_STATE, action) => {
     case settingTypes.SET_INGREDIENTS:
       if (state.ingredients.includes(action.payload)) return state;
       return { ...state, ingredients: [...state.ingredients, action.payload] };
+
+    case settingTypes.UNSET_ALCOHOLIC_FILTER:
+      return { ...state, alcoholicFilter: '' };
+    case settingTypes.UNSET_CATEGORY:
+      return { ...state, category: '' };
+    case settingTypes.UNSET_GLASS:
+      return { ...state, glass: '' };
+    case settingTypes.UNSET_INGREDIENTS:
+      if (!state.ingredients.includes(action.payload)) return state;
+      return {
+        ...state,
+        ingredients: state.ingredients.filter((item) => {
+          if (item !== action.payload) return item;
+        }),
+      };
+
     case settingTypes.CLEAR_SETTINGS:
       return INIT_STATE;
     default:

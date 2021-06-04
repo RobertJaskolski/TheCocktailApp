@@ -6,6 +6,10 @@ import {
   setGlass,
   setCategory,
   setIngerients,
+  unsetIngerients,
+  unsetAlcoholicFilter,
+  unsetGlass,
+  unsetCategory,
 } from '../../redux/settings/settings.actions';
 import RadioFilter from '../RadioFilter';
 import CheckBoxFilter from '../CheckBoxFilter';
@@ -35,6 +39,26 @@ function List({ listType }) {
           break;
         case 'alcoholicFilters':
           dispatch(setAlcoholicFilter(e.target.value));
+          break;
+
+        default:
+          break;
+      }
+    }
+
+    if (!e.target.checked) {
+      switch (e.target.name) {
+        case 'categories':
+          dispatch(unsetCategory());
+          break;
+        case 'ingredients':
+          dispatch(unsetIngerients(e.target.value));
+          break;
+        case 'glasses':
+          dispatch(unsetGlass());
+          break;
+        case 'alcoholicFilters':
+          dispatch(unsetAlcoholicFilter());
           break;
 
         default:
