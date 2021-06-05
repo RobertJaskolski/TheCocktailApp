@@ -1,9 +1,9 @@
 import settingTypes from './settings.types';
 
 const INIT_STATE = {
-  category: '',
-  glass: '',
-  alcoholicFilter: '',
+  category: 'All',
+  glass: 'All',
+  alcoholicFilter: 'All',
   ingredients: [],
 };
 

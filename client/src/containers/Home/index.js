@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import './styles.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import List from '../../components/List';
 import {
   categoriesFetchStart,
@@ -17,29 +17,36 @@ import getDrinksByName from '../../api/getDrinksByName';
 import _ from 'lodash';
 import DrinkCard from '../../components/DrinkCard';
 import { drinksFetchStart } from '../../redux/drinks/drinks.actions';
+import { getFiltredDrinks } from '../../redux/drinks/drinks.selectors';
+
+const mapState = (state) => ({
+  drinks: getFiltredDrinks(state),
+});
 
 function Home() {
   const dispatch = useDispatch();
   const [search, setSearch] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('categories');
   const [isLoading, setIsLoading] = useState(true);
-  const [drinks, setDrinks] = useState([]);
+  //const [drinks, setDrinks] = useState([]);
   const [error, setError] = useState('');
   const [isUnmount, setIsUnmount] = useState(false);
 
+  const { drinks } = useSelector(mapState);
   const handleFetchDrinksByName = (name) => {
     setIsLoading(true);
-    getDrinksByName(name)
-      .then((res) => {
-        setDrinks(res);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setError(err);
-        setIsLoading(false);
-      });
+    // getDrinksByName(name)
+    //   .then((res) => {
+    //     setDrinks(res);
+    //     setIsLoading(false);
+    //   })
+    //   .catch((err) => {
+    //     setError(err);
+    //     setIsLoading(false);
+    //   });
     dispatch(drinksFetchStart(name));
     setIsUnmount(false);
+    setIsLoading(false);
   };
 
   const delayHandleSearch = useCallback(

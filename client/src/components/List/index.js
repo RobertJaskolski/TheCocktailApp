@@ -14,17 +14,29 @@ import {
 import RadioFilter from '../RadioFilter';
 import CheckBoxFilter from '../CheckBoxFilter';
 
-const mapState = ({ filters }) => ({
+const mapState = ({ filters, settings }) => ({
   ingredients: filters['ingredientsList'],
   categories: filters['categoriesList'],
   glasses: filters['glassesList'],
   alcoholicFilters: filters['alcoholicFiltersList'],
+  checkedCategory: settings['category'],
+  checkedIngredients: settings['ingredients'],
+  checkedGlass: settings['glass'],
+  checkedAlcoholicFilter: settings['alcoholicFilter'],
 });
 
 function List({ listType }) {
   const dispatch = useDispatch();
-  const { ingredients, categories, glasses, alcoholicFilters } =
-    useSelector(mapState);
+  const {
+    ingredients,
+    categories,
+    glasses,
+    alcoholicFilters,
+    checkedCategory,
+    checkedIngredients,
+    checkedGlass,
+    checkedAlcoholicFilter,
+  } = useSelector(mapState);
   const handleOnCheck = (e) => {
     if (e.target.checked) {
       switch (e.target.name) {
@@ -69,6 +81,14 @@ function List({ listType }) {
 
   return (
     <div className='containerList'>
+      {listType === 'categories' && (
+        <RadioFilter
+          name='All'
+          type='categories'
+          defaultChecked={true}
+          handleOnCheck={handleOnCheck}
+        />
+      )}
       {listType === 'categories' &&
         Array.isArray(categories) &&
         categories.length > 0 &&
@@ -77,9 +97,19 @@ function List({ listType }) {
             key={item.strCategory}
             name={item.strCategory}
             type='categories'
+            defaultChecked={checkedCategory === item.strCategory}
             handleOnCheck={handleOnCheck}
           />
         ))}
+
+      {listType === 'glasses' && (
+        <RadioFilter
+          name='All'
+          type='glasses'
+          defaultChecked={true}
+          handleOnCheck={handleOnCheck}
+        />
+      )}
       {listType === 'glasses' &&
         Array.isArray(glasses) &&
         glasses.length > 0 &&
@@ -87,6 +117,7 @@ function List({ listType }) {
           <RadioFilter
             key={item.strGlass}
             name={item.strGlass}
+            defaultChecked={checkedGlass === item.strGlass}
             type='glasses'
             handleOnCheck={handleOnCheck}
           />
@@ -102,6 +133,15 @@ function List({ listType }) {
             handleOnCheck={handleOnCheck}
           />
         ))}
+
+      {listType === 'alcoholicFilters' && (
+        <RadioFilter
+          name='All'
+          type='alcoholicFilters'
+          defaultChecked={true}
+          handleOnCheck={handleOnCheck}
+        />
+      )}
       {listType === 'alcoholicFilters' &&
         Array.isArray(alcoholicFilters) &&
         alcoholicFilters.length > 0 &&
@@ -109,6 +149,7 @@ function List({ listType }) {
           <RadioFilter
             key={item.strAlcoholic}
             name={item.strAlcoholic}
+            defaultChecked={checkedAlcoholicFilter === item.strAlcoholic}
             type='alcoholicFilters'
             handleOnCheck={handleOnCheck}
           />
