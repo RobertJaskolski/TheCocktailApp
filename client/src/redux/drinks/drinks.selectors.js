@@ -20,7 +20,6 @@ export const getFiltredDrinks = createSelector(
       });
     if (settings['ingredients'].length > 0) {
       drinks = handleFilterByIngredients(drinks, settings['ingredients']);
-      console.log(drinks);
     }
     return drinks;
   }

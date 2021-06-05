@@ -118,6 +118,11 @@ function Home() {
             return <DrinkCard key={drink.idDrink} drink={drink} />;
           })}
       </div>
+      {Array.isArray(drinks) && drinks.length === 0 && (
+        <div class='noResults'>
+          <h1>No Results</h1>
+        </div>
+      )}
     </section>
   );
 }

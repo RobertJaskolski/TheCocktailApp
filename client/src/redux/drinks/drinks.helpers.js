@@ -30,5 +30,14 @@ export const handleFetchDrinks = (name) => {
 };
 
 export const handleFilterByIngredients = (list, ingredients) => {
-  return list;
+  const newList = [];
+  list.map((item) => {
+    const itemIngredients = [];
+    INGREDIENTS_STR.map((str) => {
+      if (item[str]) itemIngredients.push(item[str].toLowerCase());
+    });
+    if (ingredients.every((x) => itemIngredients.includes(x.toLowerCase())))
+      newList.push(item);
+  });
+  return newList;
 };
