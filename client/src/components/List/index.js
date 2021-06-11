@@ -129,6 +129,7 @@ function List({ listType }) {
           <CheckBoxFilter
             key={item.strIngredient1}
             name={item.strIngredient1}
+            defaultChecked={checkedIngredients.includes(item.strIngredient1)}
             type='ingredients'
             handleOnCheck={handleOnCheck}
           />

@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.scss';
 
-function CheckBoxFilter({ name, type, handleOnCheck }) {
+function CheckBoxFilter({ name, type, handleOnCheck, ...otherProps }) {
   return (
     <label>
       <input
@@ -9,6 +9,7 @@ function CheckBoxFilter({ name, type, handleOnCheck }) {
         name={type}
         value={name}
         onChange={handleOnCheck}
+        {...otherProps}
       />
       <span>{name}</span>
     </label>
