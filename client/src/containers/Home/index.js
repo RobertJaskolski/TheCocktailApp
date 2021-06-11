@@ -13,40 +13,26 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import getDrinksByName from '../../api/getDrinksByName';
 import _ from 'lodash';
 import DrinkCard from '../../components/DrinkCard';
 import { drinksFetchStart } from '../../redux/drinks/drinks.actions';
 import { getFiltredDrinks } from '../../redux/drinks/drinks.selectors';
+import { LocalDining } from '@material-ui/icons';
 
 const mapState = (state) => ({
   drinks: getFiltredDrinks(state),
+  error: state.drinks['error'],
+  loading: state.drinks['loading'],
 });
 
 function Home() {
   const dispatch = useDispatch();
   const [search, setSearch] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('categories');
-  const [isLoading, setIsLoading] = useState(true);
-  //const [drinks, setDrinks] = useState([]);
-  const [error, setError] = useState('');
-  const [isUnmount, setIsUnmount] = useState(false);
 
-  const { drinks } = useSelector(mapState);
+  const { drinks, error, loading } = useSelector(mapState);
   const handleFetchDrinksByName = (name) => {
-    setIsLoading(true);
-    // getDrinksByName(name)
-    //   .then((res) => {
-    //     setDrinks(res);
-    //     setIsLoading(false);
-    //   })
-    //   .catch((err) => {
-    //     setError(err);
-    //     setIsLoading(false);
-    //   });
     dispatch(drinksFetchStart(name));
-    setIsUnmount(false);
-    setIsLoading(false);
   };
 
   const delayHandleSearch = useCallback(
@@ -108,7 +94,7 @@ function Home() {
             </AccordionDetails>
           </Accordion>
         </div>
-        {isLoading && <LinearProgress />}
+        {loading && <LinearProgress />}
         {error && 'Network problems'}
       </div>
       <div className='results'>
@@ -118,7 +104,7 @@ function Home() {
             return <DrinkCard key={drink.idDrink} drink={drink} />;
           })}
       </div>
-      {Array.isArray(drinks) && drinks.length === 0 && (
+      {Array.isArray(drinks) && drinks.length === 0 && !loading && (
         <div className='noResults'>
           <h1>No Results</h1>
         </div>
