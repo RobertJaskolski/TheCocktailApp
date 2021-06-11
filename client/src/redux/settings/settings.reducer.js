@@ -30,7 +30,7 @@ const settingsReducer = (state = INIT_STATE, action) => {
       return {
         ...state,
         ingredients: state.ingredients.filter((item) => {
-          if (item !== action.payload) return item;
+          return item !== action.payload;
         }),
       };
 

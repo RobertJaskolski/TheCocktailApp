@@ -35,9 +35,11 @@ export const handleFilterByIngredients = (list, ingredients) => {
     const itemIngredients = [];
     INGREDIENTS_STR.map((str) => {
       if (item[str]) itemIngredients.push(item[str].toLowerCase());
+      return str;
     });
     if (ingredients.every((x) => itemIngredients.includes(x.toLowerCase())))
       newList.push(item);
+    return item;
   });
   return newList;
 };

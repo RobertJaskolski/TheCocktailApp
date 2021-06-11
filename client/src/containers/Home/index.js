@@ -8,6 +8,12 @@ import {
   alcoholicFiltersFetchStart,
   ingredientsFetchStart,
 } from '../../redux/filters/filters.actions';
+import {
+  unsetAlcoholicFilter,
+  unsetCategory,
+  unsetGlass,
+  unsetIngerients,
+} from '../../redux/settings/settings.actions';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -17,12 +23,16 @@ import _ from 'lodash';
 import DrinkCard from '../../components/DrinkCard';
 import { drinksFetchStart } from '../../redux/drinks/drinks.actions';
 import { getFiltredDrinks } from '../../redux/drinks/drinks.selectors';
-import { LocalDining } from '@material-ui/icons';
+import CloseIcon from '@material-ui/icons/Close';
 
 const mapState = (state) => ({
   drinks: getFiltredDrinks(state),
   error: state.drinks['error'],
   loading: state.drinks['loading'],
+  categoryChecked: state.settings['category'],
+  glassChecked: state.settings['glass'],
+  alcoholicFilterChecked: state.settings['alcoholicFilter'],
+  ingredientsChecked: state.settings['ingredients'],
 });
 
 function Home() {
@@ -30,7 +40,15 @@ function Home() {
   const [search, setSearch] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('categories');
 
-  const { drinks, error, loading } = useSelector(mapState);
+  const {
+    drinks,
+    error,
+    loading,
+    categoryChecked,
+    glassChecked,
+    alcoholicFilterChecked,
+    ingredientsChecked,
+  } = useSelector(mapState);
   const handleFetchDrinksByName = (name) => {
     dispatch(drinksFetchStart(name));
   };
@@ -54,10 +72,25 @@ function Home() {
     setSelectedFilter(e.target.value);
   };
 
+  const handleUnsetIngredients = (str) => {
+    dispatch(unsetIngerients(str));
+  };
+
+  const handleUnsetGlass = () => {
+    dispatch(unsetGlass());
+  };
+
+  const handleUnsetCategory = () => {
+    dispatch(unsetCategory());
+  };
+
+  const handleUnsetAlcoholicFilter = () => {
+    dispatch(unsetAlcoholicFilter());
+  };
   useEffect(() => {
     dispatch(categoriesFetchStart());
     handleFetchDrinksByName('');
-  }, [dispatch]);
+  }, []);
 
   return (
     <section className='home'>
@@ -94,8 +127,41 @@ function Home() {
             </AccordionDetails>
           </Accordion>
         </div>
+        <div className='checkedFilters'>
+          {categoryChecked && categoryChecked !== 'All' && (
+            <span className='checkedFiltr' onClick={handleUnsetCategory}>
+              {categoryChecked}
+              <CloseIcon />
+            </span>
+          )}
+          {glassChecked && glassChecked !== 'All' && (
+            <span className='checkedFiltr' onClick={handleUnsetGlass}>
+              {glassChecked}
+              <CloseIcon />
+            </span>
+          )}
+          {alcoholicFilterChecked && alcoholicFilterChecked !== 'All' && (
+            <span className='checkedFiltr' onClick={handleUnsetAlcoholicFilter}>
+              {alcoholicFilterChecked}
+              <CloseIcon />
+            </span>
+          )}
+          {Array.isArray(ingredientsChecked) &&
+            ingredientsChecked.length > 0 &&
+            ingredientsChecked.map((str) => (
+              <span
+                aria-roledescription='button'
+                className='checkedFiltr'
+                key={str}
+                onClick={() => handleUnsetIngredients(str)}
+              >
+                {str}
+                <CloseIcon />
+              </span>
+            ))}
+        </div>
         {loading && <LinearProgress />}
-        {error && 'Network problems'}
+        {error && <h1>Network problems</h1>}
       </div>
       <div className='results'>
         {Array.isArray(drinks) &&

@@ -8,15 +8,15 @@ export const getFiltredDrinks = createSelector(
   (drinks, settings) => {
     if (settings['category'] !== 'All')
       drinks = drinks.filter((item) => {
-        if (settings['category'] === item.strCategory) return item;
+        return settings['category'] === item.strCategory;
       });
     if (settings['glass'] !== 'All')
       drinks = drinks.filter((item) => {
-        if (settings['glass'] === item.strGlass) return item;
+        return item.strGlass === settings['glass'];
       });
     if (settings['alcoholicFilter'] !== 'All')
       drinks = drinks.filter((item) => {
-        if (settings['alcoholicFilter'] === item.strAlcoholic) return item;
+        return settings['alcoholicFilter'] === item.strAlcoholic;
       });
     if (settings['ingredients'].length > 0) {
       drinks = handleFilterByIngredients(drinks, settings['ingredients']);
