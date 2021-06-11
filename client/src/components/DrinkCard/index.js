@@ -24,4 +24,4 @@ DrinkCard.propTypes = {
   }),
 };
 
-export default DrinkCard;
+export default React.memo(DrinkCard);
