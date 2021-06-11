@@ -24,6 +24,7 @@ import DrinkCard from '../../components/DrinkCard';
 import { drinksFetchStart } from '../../redux/drinks/drinks.actions';
 import { getFiltredDrinks } from '../../redux/drinks/drinks.selectors';
 import CloseIcon from '@material-ui/icons/Close';
+import Button from '../../components/form/Button';
 
 const mapState = (state) => ({
   drinks: getFiltredDrinks(state),
@@ -39,7 +40,7 @@ function Home() {
   const dispatch = useDispatch();
   const [search, setSearch] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('categories');
-
+  const [listItemsCount, setListItemCounts] = useState(1);
   const {
     drinks,
     error,
@@ -49,6 +50,11 @@ function Home() {
     alcoholicFilterChecked,
     ingredientsChecked,
   } = useSelector(mapState);
+
+  const handleLoadMore = () => {
+    if (drinks.length > 0) setListItemCounts((current) => current + 1);
+  };
+
   const handleFetchDrinksByName = (name) => {
     dispatch(drinksFetchStart(name));
   };
@@ -166,10 +172,15 @@ function Home() {
       <div className='results'>
         {Array.isArray(drinks) &&
           drinks.length > 0 &&
-          drinks.map((drink) => {
+          drinks.slice(0, listItemsCount * 18).map((drink) => {
             return <DrinkCard key={drink.idDrink} drink={drink} />;
           })}
       </div>
+      {listItemsCount * 18 < drinks?.length && (
+        <div>
+          <Button onClick={handleLoadMore}>Load More</Button>
+        </div>
+      )}
       {Array.isArray(drinks) && drinks.length === 0 && !loading && (
         <div className='noResults'>
           <h1>No Results</h1>

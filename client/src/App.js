@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { checkUserSession } from './redux/user/user.actions';
 import './main.scss';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 // HOC's
 import WithAuth from './hoc/WithAuth';
@@ -38,7 +39,7 @@ function App() {
           path='/'
           render={() => (
             <MainLayout>
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<LinearProgress />}>
                 <Home />
               </Suspense>
             </MainLayout>
@@ -49,7 +50,7 @@ function App() {
           render={() => (
             <MainLayout>
               <WithNotAuth>
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<LinearProgress />}>
                   <WithUserErrorLogin />
                 </Suspense>
               </WithNotAuth>
@@ -61,7 +62,7 @@ function App() {
           render={() => (
             <MainLayout>
               <WithNotAuth>
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<LinearProgress />}>
                   <WithUserErrorRegister />
                 </Suspense>
               </WithNotAuth>
@@ -73,7 +74,7 @@ function App() {
           render={() => (
             <MainLayout>
               <WithNotAuth>
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<LinearProgress />}>
                   <WithUserErrorReset />
                 </Suspense>
               </WithNotAuth>
@@ -84,7 +85,7 @@ function App() {
           path='/random'
           render={() => (
             <MainLayout>
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<LinearProgress />}>
                 <Random />
               </Suspense>
             </MainLayout>
@@ -95,7 +96,7 @@ function App() {
           render={() => (
             <WithAuth>
               <MainLayout>
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<LinearProgress />}>
                   <h1>Favs</h1>
                 </Suspense>
               </MainLayout>
