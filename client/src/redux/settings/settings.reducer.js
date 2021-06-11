@@ -20,11 +20,11 @@ const settingsReducer = (state = INIT_STATE, action) => {
       return { ...state, ingredients: [...state.ingredients, action.payload] };
 
     case settingTypes.UNSET_ALCOHOLIC_FILTER:
-      return { ...state, alcoholicFilter: '' };
+      return { ...state, alcoholicFilter: 'All' };
     case settingTypes.UNSET_CATEGORY:
-      return { ...state, category: '' };
+      return { ...state, category: 'All' };
     case settingTypes.UNSET_GLASS:
-      return { ...state, glass: '' };
+      return { ...state, glass: 'All' };
     case settingTypes.UNSET_INGREDIENTS:
       if (!state.ingredients.includes(action.payload)) return state;
       return {

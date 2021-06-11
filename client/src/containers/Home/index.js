@@ -119,7 +119,7 @@ function Home() {
           })}
       </div>
       {Array.isArray(drinks) && drinks.length === 0 && (
-        <div class='noResults'>
+        <div className='noResults'>
           <h1>No Results</h1>
         </div>
       )}
