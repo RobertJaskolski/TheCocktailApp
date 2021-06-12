@@ -19,6 +19,7 @@ const Login = lazy(() => import('./containers/Login'));
 const Home = lazy(() => import('./containers/Home'));
 const Register = lazy(() => import('./containers/Register'));
 const Reset = lazy(() => import('./containers/Reset'));
+const DrinkDetails = lazy(() => import('./containers/DrinkDetails'));
 
 const WithUserErrorReset = WithUserError(Reset);
 const WithUserErrorRegister = WithUserError(Register);
@@ -41,6 +42,16 @@ function App() {
             <MainLayout>
               <Suspense fallback={<LinearProgress />}>
                 <Home />
+              </Suspense>
+            </MainLayout>
+          )}
+        />
+        <Route
+          path='/:id'
+          render={() => (
+            <MainLayout>
+              <Suspense fallback={<LinearProgress />}>
+                <DrinkDetails />
               </Suspense>
             </MainLayout>
           )}
