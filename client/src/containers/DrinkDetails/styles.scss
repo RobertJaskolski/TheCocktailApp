@@ -1,4 +1,6 @@
-.drinkDetails {
+@import '../../colors';
+
+.drinkDetailsWrapper {
   min-height: 20vh;
   display: flex;
   justify-content: center;
@@ -6,5 +8,48 @@
   color: white;
   h1 {
     text-transform: uppercase;
+  }
+  .drinkDetails {
+    flex-basis: 90%;
+    opacity: 0.85;
+    padding: 20px;
+    border: 2px solid white;
+    border-radius: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .wrappImg {
+      @media (max-width: 1200px) {
+        flex-basis: 100%;
+      }
+      flex-basis: 40%;
+      display: flex;
+      justify-content: center;
+    }
+    img {
+      border: 2px solid white;
+      border-radius: 15px;
+      max-width: 100%;
+    }
+    .drinkText {
+      @media (max-width: 1200px) {
+        flex-basis: 100%;
+      }
+      flex-basis: 55%;
+      padding: 0px 15px;
+      h1 {
+        text-align: center;
+        font-size: 3rem;
+        color: $lightRed;
+      }
+      h2 {
+        color: $lightRed;
+        font-size: 2.2rem;
+      }
+      p,
+      li {
+        font-size: 1.5rem;
+      }
+    }
   }
 }

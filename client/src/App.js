@@ -47,16 +47,6 @@ function App() {
           )}
         />
         <Route
-          path='/:id'
-          render={() => (
-            <MainLayout>
-              <Suspense fallback={<LinearProgress />}>
-                <DrinkDetails />
-              </Suspense>
-            </MainLayout>
-          )}
-        />
-        <Route
           path='/login'
           render={() => (
             <MainLayout>
@@ -112,6 +102,16 @@ function App() {
                 </Suspense>
               </MainLayout>
             </WithAuth>
+          )}
+        />
+        <Route
+          path='/:id'
+          render={() => (
+            <MainLayout>
+              <Suspense fallback={<LinearProgress />}>
+                <DrinkDetails />
+              </Suspense>
+            </MainLayout>
           )}
         />
       </Switch>
