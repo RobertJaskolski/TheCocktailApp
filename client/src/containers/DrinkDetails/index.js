@@ -1,15 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import getDrink from '../../api/getDrink';
 import './styles.scss';
 import { INGREDIENTS_STR, MEASURE_STR } from '../../consts';
+import { useSelector, useDispatch } from 'react-redux';
+import Button from '../../components/form/Button';
+import { postFav, getFavs, deleteFav } from '../../redux/favs/favs.actions';
+
+const mapState = ({ user, favs }) => ({
+  currentUser: user['currentUser'],
+  favs: favs['favs'],
+});
 
 function DrinkDetails() {
+  const history = useHistory();
   const { id } = useParams();
   const [drink, setDrink] = useState({});
   const [error, setError] = useState(false);
+  const { currentUser, favs } = useSelector(mapState);
+  const dispatch = useDispatch();
+
+  const handlePostFav = () => {
+    dispatch(postFav(drink));
+    if (currentUser) dispatch(getFavs(currentUser['id']));
+  };
+
+  const handleDeleteFav = () => {
+    dispatch(deleteFav(drink));
+    if (currentUser) dispatch(getFavs(currentUser['id']));
+    history.push('/login');
+  };
 
   useEffect(() => {
+    if (currentUser) dispatch(getFavs(currentUser['id']));
     getDrink({ id: id })
       .then((res) => {
         setDrink(res);
@@ -49,6 +72,13 @@ function DrinkDetails() {
                 );
               })}
           </ul>
+          {currentUser &&
+          Array.isArray(favs?.data) &&
+          !favs?.data.some((d) => d.strDrink === drink.strDrink) ? (
+            <Button onClick={handlePostFav}>Add to favs</Button>
+          ) : (
+            <Button onClick={handleDeleteFav}>Delete fav</Button>
+          )}
         </div>
       </div>
     </div>
