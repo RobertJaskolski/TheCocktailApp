@@ -16,7 +16,7 @@ The Cocktail App allows you to quickly and easily find a drink for any occasion.
 
 ## General info
 
-The cocktail application is an application developed for the study subject "Team projects in IT". As part of this project, the following concepts were developed:
+The cocktail application is an application developed for the study subject. As part of this project, the following concepts were developed:
 
 - React + redux (redux-saga)
 - Work in team
@@ -25,10 +25,6 @@ The cocktail application is an application developed for the study subject "Team
 - HOC pattern
 - hooks
 - Dockerization
-
-### Screenshots - Design of application
-
-soon
 
 ## Getting Started
 
@@ -57,13 +53,10 @@ REACT_APP_MEASUREMENT_ID=YOUR_DATA
 5. Before doing PR, make a docker image
    `docker build`
 
-## Features
-
-- soon
 
 ## Status
 
-Project is in progress.
+Project is finished.
 
 ## License
 
