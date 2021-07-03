@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { signOutUserStart } from '../../redux/user/user.actions';
 import Logo from '../../assets/logo.png';
 import './styles.scss';
+import { setFavs } from '../../redux/favs/favs.actions';
 
 const mapState = (state) => ({
   currentUser: state.user['currentUser'],
@@ -14,6 +15,7 @@ function Header() {
   const dispatch = useDispatch();
   const [hamburgerIsActive, setHamburgerIsActive] = useState(false);
   const signOut = () => {
+    dispatch(setFavs({ data: [] }));
     dispatch(signOutUserStart());
   };
 

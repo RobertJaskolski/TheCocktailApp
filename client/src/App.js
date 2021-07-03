@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { checkUserSession } from './redux/user/user.actions';
 import './main.scss';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 // HOC's
 import WithAuth from './hoc/WithAuth';
@@ -18,6 +19,8 @@ const Login = lazy(() => import('./containers/Login'));
 const Home = lazy(() => import('./containers/Home'));
 const Register = lazy(() => import('./containers/Register'));
 const Reset = lazy(() => import('./containers/Reset'));
+const DrinkDetails = lazy(() => import('./containers/DrinkDetails'));
+const Favs = lazy(() => import('./containers/Favs'));
 
 const WithUserErrorReset = WithUserError(Reset);
 const WithUserErrorRegister = WithUserError(Register);
@@ -38,7 +41,7 @@ function App() {
           path='/'
           render={() => (
             <MainLayout>
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<LinearProgress />}>
                 <Home />
               </Suspense>
             </MainLayout>
@@ -49,7 +52,7 @@ function App() {
           render={() => (
             <MainLayout>
               <WithNotAuth>
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<LinearProgress />}>
                   <WithUserErrorLogin />
                 </Suspense>
               </WithNotAuth>
@@ -61,7 +64,7 @@ function App() {
           render={() => (
             <MainLayout>
               <WithNotAuth>
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<LinearProgress />}>
                   <WithUserErrorRegister />
                 </Suspense>
               </WithNotAuth>
@@ -73,7 +76,7 @@ function App() {
           render={() => (
             <MainLayout>
               <WithNotAuth>
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<LinearProgress />}>
                   <WithUserErrorReset />
                 </Suspense>
               </WithNotAuth>
@@ -84,7 +87,7 @@ function App() {
           path='/random'
           render={() => (
             <MainLayout>
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<LinearProgress />}>
                 <Random />
               </Suspense>
             </MainLayout>
@@ -95,11 +98,21 @@ function App() {
           render={() => (
             <WithAuth>
               <MainLayout>
-                <Suspense fallback={<div>Loading...</div>}>
-                  <h1>Favs</h1>
+                <Suspense fallback={<LinearProgress />}>
+                  <Favs />
                 </Suspense>
               </MainLayout>
             </WithAuth>
+          )}
+        />
+        <Route
+          path='/:id'
+          render={() => (
+            <MainLayout>
+              <Suspense fallback={<LinearProgress />}>
+                <DrinkDetails />
+              </Suspense>
+            </MainLayout>
           )}
         />
       </Switch>

@@ -69,6 +69,7 @@
     }
   }
   .filters {
+    margin-bottom: 15px;
     .MuiAccordionDetails-root {
       flex-wrap: wrap;
     }
@@ -111,6 +112,25 @@
     .random-drink-card__container {
       width: 90%;
       margin: 0px auto;
+    }
+  }
+  .checkedFilters {
+    display: flex;
+    flex-wrap: wrap;
+    .checkedFiltr {
+      padding: 15px;
+      margin: 5px 10px 5px 0px;
+      background-color: $lightRed;
+      border-radius: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      opacity: 0.8;
+      transition: opacity 0.3s ease-in-out;
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 }
