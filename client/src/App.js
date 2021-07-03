@@ -20,6 +20,7 @@ const Home = lazy(() => import('./containers/Home'));
 const Register = lazy(() => import('./containers/Register'));
 const Reset = lazy(() => import('./containers/Reset'));
 const DrinkDetails = lazy(() => import('./containers/DrinkDetails'));
+const Favs = lazy(() => import('./containers/Favs'));
 
 const WithUserErrorReset = WithUserError(Reset);
 const WithUserErrorRegister = WithUserError(Register);
@@ -98,7 +99,7 @@ function App() {
             <WithAuth>
               <MainLayout>
                 <Suspense fallback={<LinearProgress />}>
-                  <h1>Favs</h1>
+                  <Favs />
                 </Suspense>
               </MainLayout>
             </WithAuth>
